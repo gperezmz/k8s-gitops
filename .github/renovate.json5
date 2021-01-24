@@ -25,6 +25,13 @@
         "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
       ],
       "datasourceTemplate": "helm"
+    },
+    {
+      "fileMatch": ["./.+\\.yaml$"],
+      "matchStrings": [
+        "image:\n *repository: (?<depName>.*?)\n *tag: (?<currentValue>.*)\n"
+      ],
+      "datasourceTemplate": "docker"
     }
   ],
   "enabledManagers": ["regex", "github-actions", "pre-commit"],
