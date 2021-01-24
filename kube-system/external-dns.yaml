@@ -21,7 +21,7 @@ spec:
     logLevel: debug
     provider: coredns
     coredns:
-      etcdEndpoints: http://etcd:2379
+      etcdEndpoints: http://127.0.0.1:2379
     domainFilters:
     - perezmz.com
     - claywith.me
