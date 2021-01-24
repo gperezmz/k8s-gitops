@@ -27,7 +27,7 @@
       "datasourceTemplate": "helm"
     }
   ],
-  "enabledManagers": ["kubernetes", "regex", "github-actions", "pre-commit"],
+  "enabledManagers": ["regex", "github-actions", "pre-commit"],
   "packageRules": [
     // Setup datasources
     {
