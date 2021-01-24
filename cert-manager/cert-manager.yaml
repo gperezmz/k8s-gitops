@@ -96,11 +96,11 @@ spec:
   chart:
     spec:
       chart: cert-manager
+      version: v1.1.0
       sourceRef:
         kind: HelmRepository
         name: jetstack
         namespace: flux-system
-      version: v1.1.0
   install:
     remediation:
       retries: 3
