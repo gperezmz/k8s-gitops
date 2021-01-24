@@ -28,11 +28,11 @@ spec:
   chart:
     spec:
       chart: ./charts/authelia
+      version: 1.x
       sourceRef:
         kind: GitRepository
         name: my-helm-charts
         namespace: flux-system
-      version: 1.x
   dependsOn:
     - name: redis
       namespace: default
