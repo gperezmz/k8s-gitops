@@ -30,6 +30,7 @@
       "datasourceTemplate": "helm"
     }
   ],
+  "enabledManagers": ["regex", "github-actions", "pre-commit"],
   "packageRules": [
     // Setup datasources
     {
