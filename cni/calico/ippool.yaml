@@ -1,0 +1,10 @@
+apiVersion: crd.projectcalico.org/v1
+kind: IPPool
+metadata:
+  name: my.ippool-1
+spec:
+  blockSize: 26
+  cidr: 10.42.0.0/16
+  ipipMode: CrossSubnet
+  natOutgoing: true
+  nodeSelector: all()

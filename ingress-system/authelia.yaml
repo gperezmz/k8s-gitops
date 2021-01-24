@@ -1,0 +1,94 @@
+apiVersion: v1
+data:
+  jwt_secret: ENC[AES256_GCM,data:PrIDrt2c4+eY84y+Y5hZx0xiM4uPg1CJj+Vx66Vr6VpCc7orEDH5mOeUQoVRCynT5v6wxmZhzCOfsY+PRdiu1fVkfxabXG9T9E/Xl299tUyGgXuk,iv:/pKhn864DT431p9xFvfjt8Y9u1R7gx2On8mCTpBO2bw=,tag:ubsTD9k5bma8PP70Qbixjw==,type:str]
+  session_secret: ENC[AES256_GCM,data:2qJuUSvfRmq3DFp7HaSvSmz8vNg7kj7+DMK1hWVpreg=,iv:kdjEv3EuOHbLUY/FbEEXGDhdW0ncg5eLReCK6M82snA=,tag:S7pZER7w0Cg8vTLVOqCElQ==,type:str]
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: authelia-secrets
+sops:
+  azure_kv: []
+  encrypted_regex: ^(data|stringData)$
+  gcp_kms: []
+  hc_vault: []
+  kms: []
+  lastmodified: "2021-01-13T18:53:33Z"
+  mac: ENC[AES256_GCM,data:u3hAMbqEBpTf0xVzEqpTv1D2P6Dis5tUGRobnGsG+l3cWX+o2OXguryzc+HqXuNnN9d0gWjnNTxthMkPVMVcj2lCZrvsJe73pGpVHKMOl0erbtMqIXpMU8v95s7dXZ7zcup5VZ5nAuzt3n2UejDtYw40ucZn+oKCPw8uitrrCRE=,iv:fLL5/Ct/F2oZzBmEAUnvgjC1T3A+miob82Cylkj927E=,tag:TR/cHddOn87ClOR5hDkOXg==,type:str]
+  pgp:
+    - created_at: "2021-01-13T18:53:32Z"
+      enc: "-----BEGIN PGP MESSAGE-----\r\n\r\nhQGMAz2OwhEturU+AQv9EHfOUWZOEZnj28cYH+NT+BsN79NEpJLdPq6vtfObrNb/\r\nIdcaEANwJsUA7wPmFqkeRPyb2GaAUGHOmNfJ11t3e09+w0NLx4YP9xQ0kTmWjWjo\r\nT9SJ4gW9wfhqbYC7ucN0w3vechQv7HJlW/eaWWXCiAgEx87j9UgRb7auVtXCvzVp\r\nB6DyjWYFnKOLC3zkjkJU3CCMRk11qnm0qzlkTxGn9ikM7WOI8IxaIej9CrEmL49X\r\n+0U4425hzGxhqj7Kxkevs9fzHm0VadMCAg5YQ1moPHrNPw/PDARc5FwhAF9ZK0VA\r\n5ef2EPoe5SoLy0asXOvhRQcj8+lrB6Plv4tpnjTH23DR2QWYqLNSRRiGqr8DjMA5\r\nnfSJg+bgd8XniL1gUj46LUKidgMqaimRTtqHWqz5hsZMNT8ErJ8Lj567/otkfg6H\r\n3T4I7T7K4Z2Wbiq4BvbZQymlID+IYLearwrt5K/2vwQQ57n5u7kJlcEW1eMETfHn\r\n7e/NmvuGzr7oZU4cJIdS0l4B5NXi2v0Y/A2yJPHEmO1bA1MfwX2fJrbbnr3yqqCP\r\n+ZB3Om2ryKULlO6FReVmsiHOizJ8s7CLfgM7BmdpXwotELDYvHnHpx/kn7++c4Ju\r\nMSoczBkXDfDN0gCx39Bv\r\n=xs8e\r\n-----END PGP MESSAGE-----\r\n"
+      fp: B95DBC80D9BD192B0811AC61BB73E1527E549D6C
+  version: 3.6.1
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: authelia
+spec:
+  chart:
+    spec:
+      chart: ./charts/authelia
+      sourceRef:
+        kind: GitRepository
+        name: my-helm-charts
+        namespace: flux-system
+      version: 1.x
+  dependsOn:
+    - name: redis
+      namespace: default
+  install:
+    remediation:
+      retries: 3
+  interval: 1h0m0s
+  releaseName: authelia
+  values:
+    additionalVolumeMounts:
+      - mountPath: /app/secrets
+        name: secrets
+        readOnly: true
+
+    additionalVolumes:
+      - name: secrets
+        secret:
+          items:
+            - key: jwt_secret
+              path: jwt_secret
+            - key: session_secret
+              path: session_secret
+          secretName: authelia-secrets
+
+    env:
+      AUTHELIA_JWT_SECRET_FILE: /app/secrets/jwt_secret
+      AUTHELIA_SESSION_SECRET_FILE: /app/secrets/session_secret
+      TZ: Europe/Madrid
+
+    image:
+      repository: authelia/authelia
+      tag: 4.25.2
+
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: external
+      hosts:
+        - host: login.perezmz.com
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - login.perezmz.com
+          secretName: perezmz-com-tls
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: ingress-system-data
+        subPath: authelia
+
+    podSecurityContext:
+      fsGroup: 1001
+
+    securityContext:
+      runAsGroup: 1001
+      runAsUser: 1001

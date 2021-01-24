@@ -1,0 +1,7 @@
+# Trash
+.DS_Store
+Thumbs.db
+
+# Flux
+bin/
+flux

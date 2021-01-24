@@ -1,0 +1,63 @@
+# upgradeCompatibility: '1.9'
+
+image:
+  repository: quay.io/cilium/cilium
+  tag: v1.9.3
+
+# Enable automatic L2 routing between nodes
+autoDirectNodeRoutes: true
+
+hubble:
+  enabled: true
+  metrics:
+    enabled:
+    - dns:query;ignoreAAAA
+    - drop
+    - tcp
+    - flow
+    - port-distribution
+    - icmp
+    - http
+  listenAddress: ":4244"
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+
+ipam:
+  # default: "10.0.0.0/8", however, using existing podCIDR
+  mode: kubernetes
+
+k8s:
+  requireIPv4PodCIDR: true
+
+# force features for kube-proxy replacement
+kubeProxyReplacement: strict
+# The IP address with port for kube-proxy replacement health check server to serve on
+kubeProxyReplacementHealthzBindAddr: "0.0.0.0:10256"
+
+prometheus:
+  enabled: false
+
+operator:
+  replicas: 1
+  prometheus:
+    enabled: false
+
+# Kubernetes exports KUBERNETES_SERVICE_HOST and KUBERNETES_SERVICE_PORT with a ClusterIP
+# of the kube-apiserver service to the pod, however there is no kube-proxy in our setup
+# that responds to that service. Therefor, Cillium agent needs to be made aware how to reach
+# the kube-apiserver
+k8sServiceHost: 192.168.1.254
+k8sServicePort: 6443
+
+# Allows to explicitly specify the CIDR for native routing. This value corresponds to the
+# configured cluster-cidr.
+nativeRoutingCIDR: 10.42.0.0/16
+
+# Tunnel mode is disabled as part of the Direct Server Return (DSR) configuration
+tunnel: disabled
+
+loadBalancer:
+  # BPF load balancing mode
+  mode: hybrid
