@@ -4,6 +4,9 @@ metadata:
   name: external-dns
 spec:
   releaseName: external-dns
+  dependsOn:
+  - namespace: kube-system
+    name: etcd
   chart:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
@@ -21,10 +24,10 @@ spec:
     logLevel: debug
     provider: coredns
     coredns:
-      etcdEndpoints: http://127.0.0.1:2379
+      etcdEndpoints: http://etcd:2379
     domainFilters:
-    - perezmz.com
-    - claywith.me
+      - perezmz.com
+      - claywith.me
     createSecret: true
     crd:
       create: true
