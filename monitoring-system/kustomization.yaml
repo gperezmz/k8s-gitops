@@ -5,3 +5,4 @@ resources:
   - namespace.yaml
   - victoria-metrics-operator
   - victoria-metrics-agent
+  - kube-prometheus-stack
