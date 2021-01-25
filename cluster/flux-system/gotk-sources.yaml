@@ -42,3 +42,38 @@ spec:
     /**/.gitignore
     /**/*.md
     /**/*.txt
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: flux-system-bootstrap
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  secretRef:
+    name: flux-system
+  url: ssh://git@github.com/gperezmz/k8s-gitops
+  ignore: |
+    # exclude all
+    /*
+    # include bootstrap
+    !/bootstrap
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: flux-system-root
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  secretRef:
+    name: flux-system
+  url: ssh://git@github.com/gperezmz/k8s-gitops
+  ignore: |
+    # exclude flux-system and bootstrap
+    cluster/
+    bootstrap/
