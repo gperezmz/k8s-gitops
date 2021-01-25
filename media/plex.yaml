@@ -28,12 +28,17 @@ spec:
       PLEX_GID: 1001
       HOSTNAME: plex.perezmz.com
       ADVERTISE_IP: https://plex.perezmz.com:443/,http://192.168.2.21:32400/
-      ALLOWED_NETWORKS: 192.168.0.0/22,10.1.0.0/16
+      ALLOWED_NETWORKS: 192.168.0.0/22,10.42.0.0/16
 
     ingress:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: external
+
+        nginx.ingress.kubernetes.io/configuration-snippet: |
+          proxy_set_header Host    $server_addr;
+          proxy_set_header Referer $server_addr;
+          proxy_set_header Origin  $server_addr; 
       hosts:
         - host: plex.perezmz.com
           paths:
