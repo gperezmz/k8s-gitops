@@ -43,11 +43,6 @@ spec:
     kubeProxy:
       enabled: false
     kubelet:
-      serviceMonitor:
-        metricRelabelings:
-          - action: replace
-            sourceLabels:
-              - node
-            targetLabel: instance
+      enabled: false
     prometheus:
       enabled: false
