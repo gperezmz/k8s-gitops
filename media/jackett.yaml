@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/jackett
-      tag: release-0.17.348
+      tag: release-0.17.354
     
     env:
       TZ: Europe/Madrid
