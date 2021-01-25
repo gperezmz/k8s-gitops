@@ -1,0 +1,14 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAgent
+metadata:
+  name: vmagent
+spec:
+  serviceScrapeNamespaceSelector: {}
+  podScrapeNamespaceSelector: {}
+  podScrapeSelector: {}
+  serviceScrapeSelector: {}
+  nodeScrapeSelector: {}
+  nodeScrapeNamespaceSelector: {}
+  replicaCount: 1
+  remoteWrite:
+    - url: "http://vmsingle-main.monitoring-system.svc.cluster.local:8429/api/v1/write"

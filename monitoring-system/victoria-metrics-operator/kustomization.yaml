@@ -1,0 +1,5 @@
+resources:
+  - helmrelease.yaml
+  - pv.yaml
+  - vmsingle.yaml
+  - vmagent.yaml

@@ -1,0 +1,17 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMSingle
+metadata:
+  name: main
+spec:
+  retentionPeriod: "1"
+  removePvcAfterDelete: true
+  securityContext:
+    fsGroup: 1001
+  storage:
+    accessModes:
+      - ReadWriteMany
+    resources:
+      requests:
+        storage: 5Gi
+    storageClassName: local-storage
+    volumeName: vmsingle-main-data
