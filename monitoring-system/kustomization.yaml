@@ -4,3 +4,4 @@ namespace: monitoring-system
 resources:
   - namespace.yaml
   - victoria-metrics-operator
+  - victoria-metrics-agent

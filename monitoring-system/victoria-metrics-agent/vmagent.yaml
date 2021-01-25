@@ -3,6 +3,7 @@ kind: VMAgent
 metadata:
   name: main
 spec:
+  serviceAccountName: my-vmagent-main
   serviceScrapeNamespaceSelector: {}
   podScrapeNamespaceSelector: {}
   podScrapeSelector: {}
