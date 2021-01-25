@@ -6,6 +6,7 @@ spec:
   releaseName: kube-prometheus-stack
   chart:
     spec:
+      # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
       version: 13.2.0
       sourceRef:
