@@ -21,6 +21,8 @@ spec:
     prometheusOperator:
       createCustomResource: false
       enabled: false
+      admissionWebhooks:
+        enabled: false
     alertmanager:
       enabled: false
     nodeExporter:
