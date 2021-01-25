@@ -6,3 +6,4 @@ resources:
   - victoria-metrics-operator
   - victoria-metrics-agent
   - kube-prometheus-stack
+  - unifi-poller
