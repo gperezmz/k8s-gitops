@@ -20,6 +20,7 @@ spec:
   values:
     prometheusOperator:
       createCustomResource: false
+      enabled: false
     alertmanager:
       enabled: false
     nodeExporter:
