@@ -18,6 +18,8 @@ metadata:
   name: flux-system-root
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: flux-system-bootstrap
   interval: 10m0s
   sourceRef:
     kind: GitRepository
