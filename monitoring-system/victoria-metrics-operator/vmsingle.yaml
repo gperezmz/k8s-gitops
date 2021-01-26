@@ -4,7 +4,7 @@ metadata:
   name: main
 spec:
   retentionPeriod: "1"
-  removePvcAfterDelete: true
+  removePvcAfterDelete: false
   securityContext:
     fsGroup: 1001
   storage:
