@@ -7,3 +7,4 @@ resources:
   - victoria-metrics-agent
   - kube-prometheus-stack
   - unifi-poller
+  - grafana
