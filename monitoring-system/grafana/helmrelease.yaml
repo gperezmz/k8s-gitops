@@ -113,7 +113,8 @@ spec:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: internal
-      host: grafana.perezmz.com
+      hosts:
+        - grafana.perezmz.com
       tls:
         - hosts:
             - grafana.perezmz.com
