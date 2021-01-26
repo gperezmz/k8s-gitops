@@ -1,4 +1,4 @@
 resources:
   - helmrelease.yaml
   - pv.yaml
-  - vmsingle.yaml
+  #- vmsingle.yaml
