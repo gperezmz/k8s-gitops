@@ -32,6 +32,14 @@
         "image:\n *repository: (?<depName>.*?)\n *tag: (?<currentValue>.*)\n"
       ],
       "datasourceTemplate": "docker"
+    },
+    {
+      "fileMatch": ["./.+\\.yaml$"],
+      "matchStrings": [
+        "\/prometheus-operator\/v(?<currentValue>.*?)\/"
+      ],
+      "depNameTemplate": "quay.io/prometheus-operator/prometheus-operator",
+      "datasourceTemplate": "docker"
     }
   ],
   "enabledManagers": ["regex", "github-actions", "pre-commit"],
