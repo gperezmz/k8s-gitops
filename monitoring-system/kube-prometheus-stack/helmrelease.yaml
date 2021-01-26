@@ -47,5 +47,11 @@ spec:
       enabled: false
     kubelet:
       enabled: true
+      serviceMonitor:
+        metricRelabelings:
+        - action: replace
+          sourceLabels:
+          - node
+          targetLabel: instance
     prometheus:
       enabled: false
