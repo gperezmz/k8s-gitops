@@ -81,3 +81,4 @@ spec:
     cni/
     .gitignore
     /**/*.md
+    .sops.yaml
