@@ -36,7 +36,7 @@
     {
       "fileMatch": ["./.+\\.yaml$"],
       "matchStrings": [
-        "\/prometheus-operator\/v(?<currentValue>.*?)\/"
+        "\\/prometheus-operator\\/v(?<currentValue>.*?)\\/"
       ],
       "depNameTemplate": "quay.io/prometheus-operator/prometheus-operator",
       "datasourceTemplate": "docker"
