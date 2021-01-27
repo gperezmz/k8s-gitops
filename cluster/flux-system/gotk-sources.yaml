@@ -85,3 +85,5 @@ spec:
     media/
     monitoring-system/
     kube-system/
+    default/
+    ingress-system/
