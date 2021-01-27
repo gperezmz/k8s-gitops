@@ -84,3 +84,4 @@ spec:
     .sops.yaml
     media/
     monitoring-system/
+    kube-system/
