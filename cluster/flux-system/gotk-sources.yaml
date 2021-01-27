@@ -83,3 +83,4 @@ spec:
     /**/*.md
     .sops.yaml
     media/
+    monitoring-system/
