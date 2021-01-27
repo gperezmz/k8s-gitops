@@ -17,6 +17,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: media-data
+  namespace: media
 spec:
   accessModes:
     - ReadWriteMany
@@ -44,6 +45,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: media-storage
+  namespace: media
 spec:
   accessModes:
     - ReadWriteMany

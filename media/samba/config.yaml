@@ -3,6 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: samba-config
+  namespace: media
 data:
   NMBD: "true"
   PERMISSIONS: "true"

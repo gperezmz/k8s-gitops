@@ -3,6 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: flood
+  namespace: media
 spec:
   releaseName: flood
   chart:
