@@ -1,57 +1,11 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: nginx-internal
-spec:
-  chart:
-    spec:
-      chart: ingress-nginx
-      version: 3.21.0
-      sourceRef:
-        kind: HelmRepository
-        name: ingress-nginx
-        namespace: flux-system
-  install:
-    remediation:
-      retries: 3
-  interval: 5m
-  releaseName: nginx-internal
-  values:
-    controller:
-      ingressClass: internal
-      replicaCount: 1
-      extraEnvs:
-      - name: TZ
-        value: Europe/Madrid
-      service:
-        type: LoadBalancer
-        externalIPs:
-        - 192.168.2.10
-        externalTrafficPolicy: Local
-      publishService:
-        enabled: true
-      config:
-        ssl-protocols: TLSv1.3 TLSv1.2
-        use-proxy-protocol: "false"
-        proxy-body-size: "0"
-        use-forwarded-headers: "true"
-      metrics:
-        enabled: true
-        serviceMonitor:
-          enabled: true
-          namespace: ingress-system
-          namespaceSelector:
-            any: true
-      extraArgs:
-        default-ssl-certificate: ingress-system/perezmz-com-tls
-    defaultBackend:
-      enabled: false
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: nginx-external
+  namespace: ingress-system
 spec:
+  releaseName: nginx-external
   chart:
     spec:
       chart: ingress-nginx
@@ -64,18 +18,17 @@ spec:
     remediation:
       retries: 3
   interval: 5m
-  releaseName: nginx-external
   values:
     controller:
       ingressClass: external
       replicaCount: 1
       extraEnvs:
-      - name: TZ
-        value: Europe/Madrid
+        - name: TZ
+          value: Europe/Madrid
       service:
         type: LoadBalancer
         externalIPs:
-        - 192.168.2.1
+          - 192.168.2.1
         externalTrafficPolicy: Local
       publishService:
         enabled: true

@@ -1,0 +1,21 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: default
+  namespace: flux-system
+spec:
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  dependsOn:
+    - name: flux-system-bootstrap
+    - name: monitoring-system
+  interval: 10m0s
+  path: ./default
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
