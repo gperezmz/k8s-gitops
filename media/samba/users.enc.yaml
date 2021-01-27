@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: samba-users
+stringData:
+    USER: ENC[AES256_GCM,data:HmnBo5hj9NEHYAFw5xiTg40=,iv:j9jGaMGCsFzp1uK2u197vtdr9r8hYXXk20BLLv2OWc4=,tag:hetSGzUd4Lacq5RrwT75JQ==,type:str]
+    USER2: ENC[AES256_GCM,data:1pjICbUvJZbhEX7tKbMrrp1AGbo=,iv:SjDuqYe9VJERwlMq2kqWkjWExc4reWBrsWd4BcUbXSk=,tag:iiRAFAK3CL2dWM2x+uOxGw==,type:str]
+type: Opaque
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-01-27T01:52:57Z'
+    mac: ENC[AES256_GCM,data:oYoV5QYGBifWAYjWmZKK/x6UtsXKmt+yWOi2Jio2pKlx3800Xyc+0UVM7jsxh9CBvGV+3JakNROFl+lwZid6JNcBdAdx7KGPstKjNJxsjE058oFTRI6QDn3nZBQHyFEZBq1jLsPlhQ0nn5nQLJKPl5+siHbL56BUtoN0Qu+mch8=,iv:mt72/MU78jC1+EESMUVG/I3tkX6NoxRoj1GXtv2iJbU=,tag:/SN1fcSoY+Ecs1+6ZU7sNA==,type:str]
+    pgp:
+    -   created_at: '2021-01-27T01:52:57Z'
+        enc: "-----BEGIN PGP MESSAGE-----\r\n\r\nhQGMAz2OwhEturU+AQwAgCC1EF5wRe/sRPXMnvAH3ScH7P2eV/8QMzTHRtp8iTuK\r\nmxv3AiQePaYVJiusHlH6ycZr2Ns12MkEBnZ5nN2/2d/i++iY/OikrHq+Ty9aiGm1\r\nkV1koAU+ezt7HqWuC04B6GBvZNReo/Yum7VnPsRLEGwIGkHxV71Qrp/2XuExgfv7\r\nEGrsKloJgisDMs6lEak7I42WgFtkdiKxunUgexaJS1GuIoPxhLeCpRLfssgpoVtU\r\nN/Vi5uZJHQzO9aawUxYazJpUSpq99hgD2QRbmsehXU2Vibh1PN0NiN3Q0JXo8+ao\r\nQgaJ10jVO3LTBJ4hplKq/GarusYJjJqKwZZdtHsJAO31RuLHfSnaQYGbJig1ZSFw\r\n+DyYYeer2GsRW807hzHkjHby1jUme+4VW67vICSnvItQtXywEk3vOZWi0cqxb3xK\r\nPLcusHT3D3nfasQFR6LjeGztj+1kdSlt71Xhm+KQdGwT5TnVBrQsQoIYA6qToVD+\r\nwm1vyEzxpWx1sszopJgh0lwBu3TUzqUlkv5fsrOYhkpYwhHVJYjTIYBwUeJmBrX3\r\ncrhaq8ykn8Vjc+IOP/0z/ExiYTByMBOeI9RR4EM1nNOQXwmNv7gqE/hGhr9mQaep\r\nUh5FmwWGVO8JkGlXvQ==\r\n=nAW1\r\n-----END
+            PGP MESSAGE-----\r\n"
+        fp: B95DBC80D9BD192B0811AC61BB73E1527E549D6C
+    encrypted_regex: ^(data|stringData)$
+    version: 3.6.1

@@ -1,3 +1,4 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -29,16 +30,16 @@ spec:
 
     service:
       additionalServices:
-      - enabled: true
-        nameSuffix: bittorrent
-        type: LoadBalancer
-        externalIPs:
-        - 192.168.2.20
-        port:
-          port: 51413
-          name: bittorrent
-          protocol: TCP
-        externalTrafficPolicy: Local
+        - enabled: true
+          nameSuffix: bittorrent
+          type: LoadBalancer
+          externalIPs:
+            - 192.168.2.20
+          port:
+            port: 51413
+            name: bittorrent
+            protocol: TCP
+          externalTrafficPolicy: Local
 
     ingress:
       enabled: true
@@ -58,23 +59,23 @@ spec:
           secretName: perezmz-com-tls
 
     additionalVolumes:
-    - name: qbittorrent-scripts
-      configMap:
-        name: qbittorrent-scripts
-        defaultMode: 511
-    - name: data
-      persistentVolumeClaim:
-        claimName: media-data
-    - name: storage
-      persistentVolumeClaim:
-        claimName: media-storage
+      - name: qbittorrent-scripts
+        configMap:
+          name: qbittorrent-scripts
+          defaultMode: 511
+      - name: data
+        persistentVolumeClaim:
+          claimName: media-data
+      - name: storage
+        persistentVolumeClaim:
+          claimName: media-storage
 
     additionalVolumeMounts:
-    - mountPath: /config/custom-cont-init.d
-      name: qbittorrent-scripts
-    - name: data
-      mountPath: /config
-      subPath: qbittorrent
-    - name: data
-      mountPath: /downloads
-      subPath: downloads
+      - mountPath: /config/custom-cont-init.d
+        name: qbittorrent-scripts
+      - name: data
+        mountPath: /config
+        subPath: qbittorrent
+      - name: data
+        mountPath: /downloads
+        subPath: downloads

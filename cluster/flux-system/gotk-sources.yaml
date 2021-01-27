@@ -82,3 +82,4 @@ spec:
     .gitignore
     /**/*.md
     .sops.yaml
+    media/

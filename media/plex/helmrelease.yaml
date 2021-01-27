@@ -1,3 +1,4 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -7,7 +8,7 @@ spec:
   chart:
     spec:
       chart: ./charts/plex
-      version: '1.0.x'
+      version: "1.0.x"
       sourceRef:
         kind: GitRepository
         name: my-helm-charts
@@ -38,7 +39,7 @@ spec:
         nginx.ingress.kubernetes.io/configuration-snippet: |
           proxy_set_header Host    $server_addr;
           proxy_set_header Referer $server_addr;
-          proxy_set_header Origin  $server_addr; 
+          proxy_set_header Origin  $server_addr;
       hosts:
         - host: plex.perezmz.com
           paths:
@@ -50,23 +51,23 @@ spec:
           secretName: perezmz-com-tls
 
     additionalVolumes:
-    - name: data
-      persistentVolumeClaim:
-        claimName: media-data
-    - name: storage
-      persistentVolumeClaim:
-        claimName: media-storage
+      - name: data
+        persistentVolumeClaim:
+          claimName: media-data
+      - name: storage
+        persistentVolumeClaim:
+          claimName: media-storage
 
     additionalVolumeMounts:
-    - name: data
-      mountPath: /config
-      subPath: plex
-    - name: data
-      mountPath: /transcode
-      subPath: plex-transcode
-    - name: storage
-      mountPath: /data
-      subPath: media
+      - name: data
+        mountPath: /config
+        subPath: plex
+      - name: data
+        mountPath: /transcode
+        subPath: plex-transcode
+      - name: storage
+        mountPath: /data
+        subPath: media
 
     podSecurityContext:
       fsGroup: 1001
