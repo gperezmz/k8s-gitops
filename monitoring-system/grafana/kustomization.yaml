@@ -1,5 +1,0 @@
-resources:
-  - credentials.yaml
-  - volumes.yaml
-  - dashboard
-  - helmrelease.yaml

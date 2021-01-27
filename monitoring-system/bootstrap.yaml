@@ -1,0 +1,98 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: monitoring-system-kube-prometheus-stack
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./monitoring-system/kube-prometheus-stack
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: monitoring-system-vm-operator
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: monitoring-system-kube-prometheus-stack
+  interval: 10m0s
+  path: ./monitoring-system/vm-operator
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: monitoring-system-vm-single
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: monitoring-system-vm-operator
+  interval: 10m0s
+  path: ./monitoring-system/vm-single
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: monitoring-system-vm-agent
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: monitoring-system-vm-single
+  interval: 10m0s
+  path: ./monitoring-system/vm-agent
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: monitoring-system-unifi-poller
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: monitoring-system-vm-operator
+  interval: 10m0s
+  path: ./monitoring-system/unifi-poller
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: monitoring-system-grafana
+  namespace: flux-system
+spec:
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+  dependsOn:
+    - name: monitoring-system-vm-single
+  interval: 10m0s
+  path: ./monitoring-system/grafana
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client

@@ -1,5 +1,0 @@
-resources:
-  - serviceaccount.yaml
-  - clusterrole.yaml
-  - clusterrolebinding.yaml
-  - vmagent.yaml
