@@ -8,6 +8,7 @@ spec:
   releaseName: nginx-internal
   chart:
     spec:
+      # renovate: registryUrl=https://kubernetes.github.io/ingress-nginx
       chart: ingress-nginx
       version: 3.21.0
       sourceRef:
