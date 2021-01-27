@@ -20,7 +20,7 @@ spec:
   values:
     image:
       repository: ghcr.io/linuxserver/unifi-controller
-      tag: 6.0.43-ls94
+      tag: 6.0.43-ls95
 
     env:
       PUID: 1001
