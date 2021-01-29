@@ -10,7 +10,7 @@ spec:
     secretRef:
       name: sops-gpg
   dependsOn:
-    - name: flux-system-bootstrap
+    - name: system
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v1beta1
       kind: HelmRelease

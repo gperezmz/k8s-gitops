@@ -11,6 +11,7 @@ spec:
       name: sops-gpg
   dependsOn:
     - name: flux-system-bootstrap
+    - name: system
     - name: monitoring-system
   interval: 10m0s
   path: ./media

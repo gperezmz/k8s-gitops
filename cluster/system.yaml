@@ -2,19 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: ingress-system
+  name: system
   namespace: flux-system
 spec:
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
-  dependsOn:
-    - name: flux-system-bootstrap
-    - name: system
-    - name: monitoring-system
   interval: 10m0s
-  path: ./ingress-system
+  path: ./system
   prune: true
   sourceRef:
     kind: GitRepository
