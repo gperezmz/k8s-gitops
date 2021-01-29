@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: kubernetes-services-endpoint
-  namespace: kube-system
-data:
-  KUBERNETES_SERVICE_HOST: "192.168.1.254"
-  KUBERNETES_SERVICE_PORT: "6443"
-  FELIX_BPFENABLED: "true"
