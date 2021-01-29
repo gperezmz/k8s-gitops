@@ -82,3 +82,4 @@ spec:
     kube-system/
     default/
     ingress-system/
+    system/
