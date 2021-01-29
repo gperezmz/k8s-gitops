@@ -2,16 +2,41 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: monitoring-system-kube-prometheus-stack
+  name: monitoring-system-prometheus-operator-crds
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./monitoring-system/kube-prometheus-stack
+  path: ./example/prometheus-operator-crd
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: prometheus-operator
   validation: client
+  healthChecks:
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: alertmanagerconfigs.monitoring.coreos.com
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: alertmanagers.monitoring.coreos.com
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: podmonitors.monitoring.coreos.com
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: probes.monitoring.coreos.com
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: prometheuses.monitoring.coreos.com
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: prometheusrules.monitoring.coreos.com
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: servicemonitors.monitoring.coreos.com
+    - apiVersion: apiextensions.k8s.io/v1
+      kind: CustomResourceDefinition
+      name: thanosrulers.monitoring.coreos.com
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
@@ -20,7 +45,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: monitoring-system-kube-prometheus-stack
+    - name: monitoring-system-prometheus-operator-crds
   interval: 10m0s
   path: ./monitoring-system/vm-operator
   prune: true
@@ -55,6 +80,22 @@ spec:
     - name: monitoring-system-vm-single
   interval: 10m0s
   path: ./monitoring-system/vm-agent
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  validation: client
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: monitoring-system-kube-prometheus-stack
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: monitoring-system-vm-operator
+  interval: 10m0s
+  path: ./monitoring-system/kube-prometheus-stack
   prune: true
   sourceRef:
     kind: GitRepository
