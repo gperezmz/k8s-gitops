@@ -4,7 +4,7 @@ set -exu -o pipefail
 
 export CALICO_DATASTORE_TYPE=kubernetes
 export CALICO_KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-export K8S_SVC_HOST=$(ip a | grep global | grep -v 172 | awk '{print $2}' | cut -f1 -d '/')
+export K8S_SVC_HOST=$(ip a | grep global | grep -v tun | awk '{print $2}' | cut -f1 -d '/')
 export K8S_SVC_PORT=6443
 
 cat <<EOF | kubectl apply -f -
