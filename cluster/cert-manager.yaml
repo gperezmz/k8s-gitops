@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
 kind: Kustomization
 metadata:
-  name: ingress-system
+  name: cert-manager
   namespace: flux-system
 spec:
   decryption:
@@ -12,9 +12,13 @@ spec:
   dependsOn:
     - name: system
     - name: monitoring-system
-    - name: cert-manager
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+      kind: HelmRelease
+      name: cert-manager
+      namespace: cert-manager
   interval: 10m0s
-  path: ./ingress-system
+  path: ./cert-manager
   prune: true
   sourceRef:
     kind: GitRepository

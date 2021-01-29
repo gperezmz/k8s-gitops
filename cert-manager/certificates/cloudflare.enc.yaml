@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: cloudflare
+    namespace: cert-manager
+stringData:
+    dns-token: ENC[AES256_GCM,data:R38riUZtq9tVD6QNSCi7IgQ5icsfNh3+c0QZU/8ksaZ4MYx5+yX+RQ==,iv:sWYX1mWcYY7yLTH7tuzC7N1+EjGDGlByBNUIYIajc0g=,tag:gkS4DyWDZd74DQRWwnJefQ==,type:str]
+type: Opaque
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-01-29T03:11:16Z'
+    mac: ENC[AES256_GCM,data:pfhqlcnl+i6tNWcF8xbDPAwYCX3BviB19Vv3aItBRyFdVRG0BcIBGmN5cisA7tepeYKxhtIyn2zHEBXcBuuziPMNHX3l3AoAnQpOzYBgNNchbTQnTUxrFtFpBP6724iNGIsgGEcB3TO5Egx6tZqndXR/DooKkCaz1mJeYfc9k/Y=,iv:4R+ta0lypSBsg/A6QkU2AhL+nb612LwMjGxyy0PE7Wk=,tag:6en6DYL14amSAax/MmTM7g==,type:str]
+    pgp:
+    -   created_at: '2021-01-29T03:11:16Z'
+        enc: "-----BEGIN PGP MESSAGE-----\r\n\r\nhQGMAz2OwhEturU+AQv+Lqz9gnSxDlxR8oYZQSAOFqAE9kCi+CXdiuTWbxV4D8mu\r\nYxL9nC0VnkdhHS8bnA8mK+HX8VN//q0pdo0IDEDH1FCrFNxoSa4kXWmihWGy1rdK\r\njeDYfXBshnIbm7jziXGsDufd+IehX/JrmZfEsN7sGLE/zju8j8cfir8/g9RrPjri\r\noupEW/NLpbM/rfeYK/Kn6UbGeZXmxuTbeqm1PnY7k2AVjenSY+Qb08uzNl1/1Wjo\r\nw26EK6D16GDY1oJ1/szRIJckezgEIyqZQnNiy0awwhiZUxzVIcwngteBPOLCpWpH\r\nM1K888aMrMLbIqmozIBH8MygQ7mugN4hMJy+EJXpB+TAc6SNzNUJV6ds4f6VnvhQ\r\ncR4IsLW8Mbjw7hhvIkdr9GCpIKCb/PgMJFbhC2Xd8U0F6YqnR6dh2qXTO5op/iDP\r\nJLLVFpR7Y8x6KJo1jqBCi7d6r3OXZcsEvFlM/ZP1J3IuGshHAjWl3v/U2qIrZVjp\r\ngEjSUSxN7ex7eHrXbSxi0lwB0QjrgiNg2Y1czW14ji26b7NzyKu6/OBB0/luJq7l\r\nlu7bkt2ozKVl0hQvEM2qZS1wolI5q7DDFg1kAAwEgohRq8dinOd5g/Zw7gEUOpMc\r\nxdDb8QqXgT5FRcFhkQ==\r\n=emvc\r\n-----END
+            PGP MESSAGE-----\r\n"
+        fp: B95DBC80D9BD192B0811AC61BB73E1527E549D6C
+    encrypted_regex: ^(data|stringData)$
+    version: 3.6.1
