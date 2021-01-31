@@ -16,3 +16,4 @@ spec:
     /**/.gitignore
     /**/*.md
     /**/*.txt
+    /**/.sops.yaml
