@@ -44,7 +44,7 @@ spec:
 
     image:
       repository: authelia/authelia
-      tag: 4.25.2
+      tag: 4.26.0
 
     ingress:
       enabled: true
