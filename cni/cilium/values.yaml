@@ -2,7 +2,7 @@
 
 image:
   repository: quay.io/cilium/cilium
-  tag: v1.9.3
+  tag: v1.9.4
 
 # Enable automatic L2 routing between nodes
 autoDirectNodeRoutes: true
