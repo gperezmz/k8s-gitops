@@ -1,0 +1,33 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: external-dns
+  namespace: kube-system
+spec:
+  dependsOn:
+    - name: etcd
+      namespace: kube-system
+  chart:
+    spec:
+      # renovate: registryUrl=https://charts.bitnami.com/bitnami
+      chart: external-dns
+      version: 4.6.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  interval: 5m0s
+  install:
+    remediation:
+      retries: 3
+  values:
+    logLevel: debug
+    provider: coredns
+    coredns:
+      etcdEndpoints: http://etcd:2379
+    domainFilters:
+      - perezmz.com
+      - claywith.me
+    createSecret: true
+    crd:
+      create: false

@@ -1,0 +1,37 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: unifi-poller
+  namespace: monitoring-system
+spec:
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: unifi-poller
+      version: 5.3.1
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  interval: 5m0s
+  values:
+    image:
+      repository: golift/unifi-poller
+      tag: 2.0.1
+    env:
+      TZ: "Europe/Madrid"
+      UP_UNIFI_DEFAULT_URL: "https://192.168.2.30:8443"
+      UP_UNIFI_DEFAULT_VERIFY_SSL: false
+      UP_UNIFI_DEFAULT_USER: "unifipoller"
+      UP_UNIFI_DEFAULT_PASS: "unifipoller"
+      UP_UNIFI_DEFAULT_SAVE_SITES: true
+      UP_UNIFI_DEFAULT_SAVE_DPI: false
+      UP_INFLUXDB_DISABLE: true
+      UP_PROMETHEUS_DISABLE: false
+    prometheus:
+      serviceMonitor:
+        enabled: true
+        interval: 2m
