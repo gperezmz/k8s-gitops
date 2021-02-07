@@ -21,7 +21,7 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/sonarr
-      tag: nightly-3.0.4.1106
+      tag: nightly-3.0.4.1107
 
     env:
       TZ: Europe/Madrid
