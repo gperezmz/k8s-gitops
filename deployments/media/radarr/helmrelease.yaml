@@ -21,7 +21,7 @@ spec:
   values:
     image:
       repository: ghcr.io/hotio/radarr
-      tag: nightly-3.1.0.4598
+      tag: nightly-3.1.0.4602
 
     env:
       TZ: Europe/Madrid
