@@ -107,11 +107,6 @@
     },
     {
       "datasources": ["docker"],
-      "versionScheme": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(?:-(?<prerelease>.*))?$",
-      "packageNames": ["ghcr.io/linuxserver/unifi-controller"]
-    },
-    {
-      "datasources": ["docker"],
       "versioning": "loose",
       "packageNames": ["plexinc/pms-docker"]
     },
