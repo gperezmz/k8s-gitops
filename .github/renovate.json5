@@ -122,7 +122,11 @@
       "requiredStatusChecks": null,
       "updateTypes": ["minor", "patch"],
       "packageNames": [
-        "plexinc/pms-docker"
+        "plexinc/pms-docker",
+        "ghcr.io/hotio/jackett",
+        "ghcr.io/hotio/bazarr",
+        "ghcr.io/hotio/radarr",
+        "ghcr.io/hotio/sonarr"
       ]
     }
   ]
