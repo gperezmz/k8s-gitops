@@ -2,8 +2,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: ingress-nginx-internal
-  namespace: ingress-system
+  name: ingress-nginx
+  namespace: kube-system
 spec:
   chart:
     spec:
@@ -20,7 +20,6 @@ spec:
   interval: 5m0s
   values:
     controller:
-      ingressClass: internal
       replicaCount: 1
       extraEnvs:
         - name: TZ
@@ -28,23 +27,26 @@ spec:
       service:
         type: LoadBalancer
         externalIPs:
-          - 192.168.2.10
+          - 192.168.2.1
         externalTrafficPolicy: Local
       publishService:
         enabled: true
       config:
         ssl-protocols: TLSv1.3 TLSv1.2
         use-proxy-protocol: "false"
-        proxy-body-size: "0"
+        proxy-body-size: "100m"
         use-forwarded-headers: "true"
+        forwarded-for-header: "CF-Connecting-IP"
+        # https://www.cloudflare.com/ips/
+        proxy-real-ip-cidr: "103.21.244.0/22,103.22.200.0/22,103.31.4.0/22,104.16.0.0/12,108.162.192.0/18,131.0.72.0/22,141.101.64.0/18,162.158.0.0/15,172.64.0.0/13,173.245.48.0/20,188.114.96.0/20,190.93.240.0/20,197.234.240.0/22,198.41.128.0/17,2400:cb00::/32,2606:4700::/32,2803:f800::/32,2405:b500::/32,2405:8100::/32,2a06:98c0::/29,2c0f:f248::/32"
       metrics:
         enabled: true
         serviceMonitor:
           enabled: true
-          namespace: ingress-system
+          namespace: kube-system
           namespaceSelector:
             any: true
       extraArgs:
-        default-ssl-certificate: ingress-system/perezmz-com-tls
+        default-ssl-certificate: kube-system/perezmz-com-tls
     defaultBackend:
       enabled: false

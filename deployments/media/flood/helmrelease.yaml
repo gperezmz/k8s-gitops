@@ -34,9 +34,9 @@ spec:
     ingress:
       enabled: true
       annotations:
-        kubernetes.io/ingress.class: internal
+        kubernetes.io/ingress.class: nginx
 
-        nginx.ingress.kubernetes.io/auth-url: "http://authelia.ingress-system.svc.cluster.local:9091/api/verify"
+        nginx.ingress.kubernetes.io/auth-url: "http://authelia.default.svc.cluster.local:9091/api/verify"
         nginx.ingress.kubernetes.io/auth-signin: "https://login.perezmz.com"
       hosts:
         - host: flood.perezmz.com
