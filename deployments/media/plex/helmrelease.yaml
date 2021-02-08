@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: ./charts/plex
-      version: "1.0.x"
+      version: 1.x
       sourceRef:
         kind: GitRepository
         name: my-helm-charts
@@ -21,7 +21,6 @@ spec:
     image:
       repository: plexinc/pms-docker
       tag: plexpass
-      pullPolicy: Always
 
     env:
       TZ: Europe/Madrid
@@ -68,6 +67,3 @@ spec:
       - name: storage
         mountPath: /data
         subPath: media
-
-    podSecurityContext:
-      fsGroup: 1001
