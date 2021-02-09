@@ -19,4 +19,4 @@ spec:
       retries: 3
   interval: 5m0s
   values:
-    createCRD: true
+    createCRD: false
