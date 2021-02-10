@@ -20,13 +20,11 @@ spec:
       retries: 3
   values:
     image:
-      repository: ghcr.io/hotio/sonarr
-      tag: nightly-3.0.4.1126
+      repository: ghcr.io/k8s-at-home/sonarr
+      tag: v3.0.4.1126
 
     env:
       TZ: Europe/Madrid
-      PUID: 1001
-      PGID: 1001
 
     ingress:
       enabled: true
@@ -63,3 +61,8 @@ spec:
       - name: storage
         mountPath: /tv
         subPath: media/tv
+
+    podSecurityContext:
+      runAsUser: 1001
+      runAsGroup: 1001
+      fsGroup: 1001
