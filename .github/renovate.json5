@@ -92,21 +92,6 @@
     // Custom versions
     {
       "datasources": ["docker"],
-      "versionScheme": "regex:^nightly-3\\.(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$",
-      "packageNames": ["ghcr.io/hotio/sonarr", "ghcr.io/hotio/radarr"]
-    },
-    {
-      "datasources": ["docker"],
-      "versionScheme": "regex:^release-0\\.(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$",
-      "packageNames": ["ghcr.io/hotio/bazarr"]
-    },
-    {
-      "datasources": ["docker"],
-      "versionScheme": "regex:^release-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$",
-      "packageNames": ["ghcr.io/hotio/jackett"]
-    },
-    {
-      "datasources": ["docker"],
       "versioning": "loose",
       "packageNames": ["plexinc/pms-docker"]
     },
@@ -118,10 +103,10 @@
       "updateTypes": ["minor", "patch"],
       "packageNames": [
         "plexinc/pms-docker",
-        "ghcr.io/hotio/jackett",
-        "ghcr.io/hotio/bazarr",
-        "ghcr.io/hotio/radarr",
-        "ghcr.io/hotio/sonarr"
+        "ghcr.io/k8s-at-home/jackett",
+        "ghcr.io/k8s-at-home/bazarr",
+        "ghcr.io/k8s-at-home/radarr",
+        "ghcr.io/k8s-at-home/sonarr"
       ]
     }
   ]
