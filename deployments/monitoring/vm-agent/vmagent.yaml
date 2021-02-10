@@ -1,16 +1,16 @@
-# apiVersion: operator.victoriametrics.com/v1beta1
-# kind: VMAgent
-# metadata:
-#   name: main
-#   namespace: monitoring
-# spec:
-#   serviceAccountName: my-vmagent-main
-#   serviceScrapeNamespaceSelector: {}
-#   podScrapeNamespaceSelector: {}
-#   podScrapeSelector: {}
-#   serviceScrapeSelector: {}
-#   nodeScrapeSelector: {}
-#   nodeScrapeNamespaceSelector: {}
-#   replicaCount: 1
-#   remoteWrite:
-#     - url: "http://vmsingle-main.monitoring.svc.cluster.local:8429/api/v1/write"
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAgent
+metadata:
+  name: main
+  namespace: monitoring
+spec:
+  serviceAccountName: my-vmagent-main
+  serviceScrapeNamespaceSelector: {}
+  podScrapeNamespaceSelector: {}
+  podScrapeSelector: {}
+  serviceScrapeSelector: {}
+  nodeScrapeSelector: {}
+  nodeScrapeNamespaceSelector: {}
+  replicaCount: 1
+  remoteWrite:
+    - url: "http://vmsingle-main.monitoring.svc.cluster.local:8429/api/v1/write"
