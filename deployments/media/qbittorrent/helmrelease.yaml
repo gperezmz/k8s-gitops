@@ -20,13 +20,11 @@ spec:
       retries: 3
   values:
     image:
-      repository: ghcr.io/linuxserver/qbittorrent
-      tag: version-14.3.2.99202101080148-7233-0cbd15890ubuntu18.04.1
+      repository: ghcr.io/k8s-at-home/qbittorrent
+      tag: v4.3.3
 
     env:
       TZ: Europe/Madrid
-      PUID: 1001
-      PGID: 1001
 
     service:
       additionalServices:
@@ -79,3 +77,8 @@ spec:
       - name: data
         mountPath: /downloads
         subPath: downloads
+
+    podSecurityContext:
+      runAsUser: 1001
+      runAsGroup: 1001
+      fsGroup: 1001
