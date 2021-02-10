@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: kube-prometheus-stack
-  namespace: monitoring-system
+  namespace: monitoring
 spec:
   chart:
     spec:
@@ -46,6 +46,11 @@ spec:
     kubeProxy:
       enabled: false
     kubelet:
-      enabled: true
+      serviceMonitor:
+        metricRelabelings:
+        - action: replace
+          sourceLabels:
+          - node
+          targetLabel: instance
     prometheus:
       enabled: false

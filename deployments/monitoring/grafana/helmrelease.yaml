@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: grafana
-  namespace: monitoring-system
+  namespace: monitoring
 spec:
   chart:
     spec:
@@ -60,7 +60,7 @@ spec:
         datasources:
           - name: Prometheus
             type: prometheus
-            url: http://vmsingle-main.monitoring-system.svc.cluster.local:8429
+            url: http://vmsingle-main.monitoring.svc.cluster.local:8429
             access: proxy
             isDefault: true
     dashboards:
