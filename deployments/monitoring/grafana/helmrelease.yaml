@@ -60,7 +60,7 @@ spec:
         datasources:
           - name: Prometheus
             type: prometheus
-            url: http://vmsingle-main.monitoring.svc.cluster.local:8429
+            url: http://prometheus-operated:9090
             access: proxy
             isDefault: true
     dashboards:
