@@ -81,10 +81,10 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: local-storage
-              selector:
-                matchLabels:
-                  app: prometheus
+              accessModes:
+                - ReadWriteMany
               resources:
                 requests:
                   storage: 5Gi
+              storageClassName: local-storage
+              volumeName: prometheus-data
