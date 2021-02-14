@@ -50,7 +50,6 @@ spec:
               - node
             targetLabel: instance
     prometheus:
-      enabled: false
       ingress:
         enabled: true
         annotations:
