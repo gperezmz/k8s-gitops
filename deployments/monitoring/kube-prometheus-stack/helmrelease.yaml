@@ -21,9 +21,6 @@ spec:
   values:
     prometheusOperator:
       createCustomResource: false
-      enabled: false
-      admissionWebhooks:
-        enabled: false
     alertmanager:
       enabled: false
     nodeExporter:
@@ -48,9 +45,40 @@ spec:
     kubelet:
       serviceMonitor:
         metricRelabelings:
-        - action: replace
-          sourceLabels:
-          - node
-          targetLabel: instance
+          - action: replace
+            sourceLabels:
+              - node
+            targetLabel: instance
     prometheus:
-      enabled: false
+      ingress:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx
+        hosts:
+          - prometheus.perezmz.com
+        tls:
+          - hosts:
+              - prometheus.perezmz.com
+            secretName: perezmz-com-tls
+      prometheusSpec:
+        ruleSelector: {}
+        ruleNamespaceSelector: {}
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelector: {}
+        serviceMonitorNamespaceSelector: {}
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelector: {}
+        podMonitorNamespaceSelector: {}
+        podMonitorSelectorNilUsesHelmValues: false
+        retention: 168h
+        enableAdminAPI: true
+        walCompression: true
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              selector:
+                matchLabels:
+                  app: prometheus
+              resources:
+                requests:
+                  storage: 5Gi
