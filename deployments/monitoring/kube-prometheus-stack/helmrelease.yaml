@@ -73,6 +73,11 @@ spec:
         retention: 168h
         enableAdminAPI: true
         walCompression: true
+        securityContext:
+          fsGroup: 1001
+          runAsGroup: 1001
+          runAsUser: 1001
+          runAsNonRoot: true
         storageSpec:
           volumeClaimTemplate:
             spec:
