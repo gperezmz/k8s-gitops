@@ -22,7 +22,7 @@ spec:
               image: busybox
               args:
                 - /bin/sh
-                - "-c"
+                - -c
                 - "(mkdir /data/backups || true) && (cd /data/backups && ls -tp | grep -v '/$' | tail -n +6 | xargs -I {} rm -- {})"
               volumeMounts:
                 - mountPath: /data
@@ -35,10 +35,10 @@ spec:
                 - name: TZ
                   value: Europe/Madrid
               command:
-                - sqlite3
+                - /bin/sh
               args:
-                - /data/db.sqlite3
-                - ".backup '/data/backups/db-$(date +%Y%m%d-%H%M).sqlite3'"
+                - -c
+                - "/usr/bin/sqlite3 /data/db.sqlite3 .backup '/data/backups/db-$(date +%Y%m%d-%H%M).sqlite3'"
               volumeMounts:
                 - mountPath: /data
                   name: bitwardenrs-config
