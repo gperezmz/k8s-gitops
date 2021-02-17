@@ -38,7 +38,7 @@ spec:
                 - sqlite3
               args:
                 - /data/db.sqlite3
-                - ".backup '/data/backups/db-$(date '+%Y%m%d-%H%M').sqlite3'"
+                - ".backup '/data/backups/db-`date '+%Y%m%d-%H%M'`.sqlite3'"
               volumeMounts:
                 - mountPath: /data
                   name: bitwardenrs-config
