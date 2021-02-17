@@ -24,6 +24,9 @@ spec:
                 - /bin/sh
                 - "-c"
                 - "(mkdir /data/backups || true) && (cd /data/backups && ls -tp | grep -v '/$' | tail -n +6 | xargs -I {} rm -- {})"
+              volumeMounts:
+                - mountPath: /data
+                  name: bitwardenrs-config
           containers:
             - name: sqlite3
               image: keinos/sqlite3:latest
