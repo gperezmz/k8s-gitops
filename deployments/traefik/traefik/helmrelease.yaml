@@ -24,7 +24,7 @@ spec:
 
     logs:
       general:
-        level: DEBUG
+        level: INFO
 
     ingressClass:
       enabled: true
