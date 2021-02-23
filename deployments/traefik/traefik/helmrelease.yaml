@@ -24,7 +24,7 @@ spec:
 
     logs:
       general:
-        level: DEBUG
+        level: INFO
 
     ingressClass:
       enabled: true
@@ -39,6 +39,7 @@ spec:
         redirectTo: websecure
 
     additionalArguments:
+      - "--accesslog=true"
       - "--api.dashboard=true"
       - "--metrics.prometheus=true"
       - "--ping"
