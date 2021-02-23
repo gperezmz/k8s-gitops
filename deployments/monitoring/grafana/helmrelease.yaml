@@ -65,8 +65,13 @@ spec:
             isDefault: true
     dashboards:
       default:
-        nginx-dashboard:
-          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
+        # nginx-dashboard:
+        #   url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
+        #   datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/11462
+        traefik:
+          gnetId: 11462
+          revision: 1
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/11315
         unifi-client-insights:
