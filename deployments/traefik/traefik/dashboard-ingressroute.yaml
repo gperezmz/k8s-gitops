@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard
+  namespace: traefik
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`traefik.perezmz.com`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      services:
+        - name: api@internal
+          kind: TraefikService
+  tls:
+    secretName: perezmz-com-tls
