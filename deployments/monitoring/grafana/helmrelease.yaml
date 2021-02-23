@@ -68,9 +68,9 @@ spec:
         # nginx-dashboard:
         #   url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
         #   datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/12250
+        # Ref: https://grafana.com/grafana/dashboards/11462
         traefik:
-          gnetId: 12250
+          gnetId: 11462
           revision: 1
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/11315
