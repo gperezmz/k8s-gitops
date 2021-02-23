@@ -1,0 +1,19 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: traefik-prometheus-exporter
+  namespace: traefik
+  labels:
+    app: traefik
+spec:
+  namespaceSelector:
+    matchNames:
+      - traefik
+  endpoints:
+  - port: metrics
+    path: /metrics
+  selector:
+    matchLabels:
+      app: traefik-metrics
+      release: monitoring

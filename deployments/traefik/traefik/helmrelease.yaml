@@ -35,13 +35,19 @@ spec:
         enabled: false
 
     ports:
+      metrics:
+        port: 8082
+        expose: true
+        exposedPort: 8082
+        protocol: TCP
       web:
         redirectTo: websecure
 
     additionalArguments:
       - "--api.dashboard=true"
+      - "--entryPoints.metrics.address=:8082"
       - "--metrics.prometheus=true"
-      - "--metrics.prometheus.entrypoint=web"
+      - "--metrics.prometheus.entrypoint=metrics"
       - "--ping"
       - "--providers.file.filename=/config/dyn.yaml"
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
