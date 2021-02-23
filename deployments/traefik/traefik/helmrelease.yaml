@@ -41,6 +41,7 @@ spec:
     additionalArguments:
       - "--api.dashboard=true"
       - "--metrics.prometheus=true"
+      - "--metrics.prometheus.entrypoint=web"
       - "--ping"
       - "--providers.file.filename=/config/dyn.yaml"
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
