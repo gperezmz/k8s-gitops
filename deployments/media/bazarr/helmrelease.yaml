@@ -29,7 +29,7 @@ spec:
     ingress:
       enabled: true
       annotations:
-        traefik.ingress.kubernetes.io/router.middlewares: authelia@kubernetescrd
+        traefik.ingress.kubernetes.io/router.middlewares: traefik-authelia@kubernetescrd
       hosts:
         - host: bazarr.perezmz.com
           paths:
