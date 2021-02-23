@@ -33,12 +33,7 @@ spec:
     ingress:
       enabled: true
       annotations:
-        kubernetes.io/ingress.class: nginx
-
-        nginx.ingress.kubernetes.io/configuration-snippet: |
-          proxy_set_header Host    $server_addr;
-          proxy_set_header Referer $server_addr;
-          proxy_set_header Origin  $server_addr;
+        traefik.ingress.kubernetes.io/router.middlewares: authelia@kubernetescrd
       hosts:
         - host: plex.perezmz.com
           paths:

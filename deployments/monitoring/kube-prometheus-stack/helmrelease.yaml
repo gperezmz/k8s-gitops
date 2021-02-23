@@ -52,8 +52,6 @@ spec:
     prometheus:
       ingress:
         enabled: true
-        annotations:
-          kubernetes.io/ingress.class: nginx
         hosts:
           - prometheus.perezmz.com
         tls:
