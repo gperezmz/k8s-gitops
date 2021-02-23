@@ -28,13 +28,14 @@ spec:
 
     ingress:
       enabled: true
+      ingressClassName: traefik
       annotations:
         traefik.ingress.kubernetes.io/router.middlewares: traefik-authelia@kubernetescrd
       hosts:
         - host: sonarr.perezmz.com
           paths:
             - path: /
-              pathType: Prefix
+              pathType: ImplementationSpecific
       tls:
         - secretName: perezmz-com-tls
 
