@@ -69,6 +69,9 @@ spec:
         #   url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/grafana/dashboards/nginx.json
         #   datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/11462
+        cert-manager:
+          url: https://gitlab.com/uneeq-oss/cert-manager-mixin/-/raw/master/dashboards/cert-manager.json
+          datasource: Prometheus
         traefik:
           gnetId: 11462
           revision: 1
