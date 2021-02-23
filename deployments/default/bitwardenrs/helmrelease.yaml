@@ -42,8 +42,6 @@ spec:
     ingress:
       enabled: true
       ingressClassName: traefik
-      annotations:
-        traefik.ingress.kubernetes.io/router.tls: "true"
       host: pw.perezmz.com
       tls:
         - secretName: perezmz-com-tls

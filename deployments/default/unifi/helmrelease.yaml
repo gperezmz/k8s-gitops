@@ -31,8 +31,6 @@ spec:
     ingress:
       enabled: true
       ingressClassName: traefik
-      annotations:
-        traefik.ingress.kubernetes.io/router.tls: "true"
         traefik.ingress.kubernetes.io/service.serversscheme: https
       hosts:
         - host: unifi.perezmz.com

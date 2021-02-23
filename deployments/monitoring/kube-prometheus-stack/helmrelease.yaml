@@ -53,8 +53,6 @@ spec:
       ingress:
         enabled: true
         ingressClassName: traefik
-        annotations:
-          traefik.ingress.kubernetes.io/router.tls: "true"
         hosts:
           - prometheus.perezmz.com
         tls:
