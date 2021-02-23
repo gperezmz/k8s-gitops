@@ -29,6 +29,9 @@ spec:
 
     ingress:
       enabled: true
+      ingressClassName: traefik
+      annotations:
+        traefik.ingress.kubernetes.io/router.tls: "true"
       hosts:
         - host: homeassistant.perezmz.com
           paths:

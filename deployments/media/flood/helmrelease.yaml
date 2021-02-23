@@ -33,8 +33,10 @@ spec:
 
     ingress:
       enabled: true
+      ingressClassName: traefik
       annotations:
         traefik.ingress.kubernetes.io/router.middlewares: traefik-authelia@kubernetescrd
+        traefik.ingress.kubernetes.io/router.tls: "true"
       hosts:
         - host: flood.perezmz.com
           paths:

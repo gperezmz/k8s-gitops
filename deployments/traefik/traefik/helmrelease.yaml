@@ -39,7 +39,6 @@ spec:
         redirectTo: websecure
 
     additionalArguments:
-      - "--accesslog=true"
       - "--api.dashboard=true"
       - "--metrics.prometheus=true"
       - "--ping"

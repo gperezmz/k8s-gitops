@@ -112,6 +112,9 @@ spec:
       enabled: true
     ingress:
       enabled: true
+      ingressClassName: traefik
+      annotations:
+        traefik.ingress.kubernetes.io/router.tls: "true"
       hosts:
         - grafana.perezmz.com
       tls:
