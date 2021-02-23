@@ -36,9 +36,7 @@ spec:
             - path: /
               pathType: Prefix
       tls:
-        - hosts:
-            - bazarr.perezmz.com
-          secretName: perezmz-com-tls
+        - secretName: perezmz-com-tls
 
     additionalVolumes:
       - name: data

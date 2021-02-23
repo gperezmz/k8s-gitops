@@ -49,9 +49,7 @@ spec:
             - path: /
               pathType: Prefix
       tls:
-        - hosts:
-            - qbittorrent.perezmz.com
-          secretName: perezmz-com-tls
+        - secretName: perezmz-com-tls
 
     additionalVolumes:
       - name: qbittorrent-scripts

@@ -41,9 +41,7 @@ spec:
             - path: /
               pathType: Prefix
       tls:
-        - hosts:
-            - flood.perezmz.com
-          secretName: perezmz-com-tls
+        - secretName: perezmz-com-tls
 
     persistence:
       data:

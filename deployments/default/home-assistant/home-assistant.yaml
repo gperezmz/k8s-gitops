@@ -35,9 +35,7 @@ spec:
             - path: /
               pathType: Prefix
       tls:
-        - hosts:
-            - homeassistant.perezmz.com
-          secretName: perezmz-com-tls
+        - secretName: perezmz-com-tls
 
     persistence:
       config:

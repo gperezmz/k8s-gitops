@@ -43,9 +43,7 @@ spec:
       enabled: true
       host: pw.perezmz.com
       tls:
-        - hosts:
-            - pw.perezmz.com
-          secretName: perezmz-com-tls
+        - secretName: perezmz-com-tls
 
     persistence:
       enabled: true

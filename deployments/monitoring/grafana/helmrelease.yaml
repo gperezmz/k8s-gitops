@@ -115,9 +115,7 @@ spec:
       hosts:
         - grafana.perezmz.com
       tls:
-        - hosts:
-            - grafana.perezmz.com
-          secretName: perezmz-com-tls
+        - secretName: perezmz-com-tls
     persistence:
       enabled: true
       existingClaim: grafana-data

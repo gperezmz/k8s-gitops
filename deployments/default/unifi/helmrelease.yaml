@@ -38,9 +38,7 @@ spec:
             - path: /
               pathType: Prefix
       tls:
-        - hosts:
-            - unifi.perezmz.com
-          secretName: perezmz-com-tls
+        - secretName: perezmz-com-tls
 
     persistence:
       unifi:

@@ -40,9 +40,7 @@ spec:
             - path: /
               pathType: Prefix
       tls:
-        - hosts:
-            - plex.perezmz.com
-          secretName: perezmz-com-tls
+        - secretName: perezmz-com-tls
 
     additionalVolumes:
       - name: data
