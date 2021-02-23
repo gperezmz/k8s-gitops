@@ -11,8 +11,9 @@ spec:
     matchNames:
       - traefik
   endpoints:
-  - port: metrics
-    path: /metrics
+    - port: metrics
+      path: /metrics
+  jobLabel: traefik-prometheus-exporter
   selector:
     matchLabels:
       app.kubernetes.io/name: traefik
