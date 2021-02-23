@@ -34,6 +34,10 @@ spec:
       dashboard:
         enabled: false
 
+    ports:
+      web:
+        redirectTo: websecure
+
     additionalArguments:
       - "--api.dashboard=true"
       - "--metrics.prometheus=true"
