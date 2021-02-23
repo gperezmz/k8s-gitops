@@ -1,19 +1,17 @@
 ---
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   name: traefik-prometheus-exporter
   namespace: traefik
-  labels:
-    app: traefik
 spec:
   namespaceSelector:
     matchNames:
       - traefik
-  endpoints:
+  podMetricsEndpoints:
     - port: traefik
       path: /metrics
-  jobLabel: traefik-prometheus-exporter
+      interval: 15s
   selector:
     matchLabels:
       app.kubernetes.io/name: traefik

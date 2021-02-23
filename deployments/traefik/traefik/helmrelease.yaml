@@ -35,8 +35,6 @@ spec:
         enabled: false
 
     ports:
-      traefik:
-        expose: true
       web:
         redirectTo: websecure
 
