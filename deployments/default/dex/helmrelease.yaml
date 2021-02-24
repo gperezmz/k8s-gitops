@@ -38,7 +38,7 @@ spec:
       hosts:
         - host: dex.perezmz.com
           paths:
-            path: /
+            - path: /
       tls:
         - secretName: perezmz-com-tls
   valuesFrom:
