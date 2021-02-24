@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: github-api-token
+    namespace: flux-system
+stringData:
+    token: ENC[AES256_GCM,data:9JTcVui2lbOAKflGzLOQBlVHlNhoKPCU5imL+kXeAwo1B1fS+pl95w==,iv:v3IedXhgTEY4himyGE03uzvA5q253hPVY+5hu9+i4Bo=,tag:s3OarAoFJifQPFV/+qNx+w==,type:str]
+type: Opaque
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-02-24T05:22:19Z'
+    mac: ENC[AES256_GCM,data:LzqXeYDNn73hM47QpfDVgJsmj4B+22vusieq5ZZ4GcM7BseNh67IhLAItTmL3kVZyc9N+WC4iBvxd+mKB1a4OuOTO8ZKr3ZNkxbFv39xvWyTa0RyPcOkJdWb/ZvLXpnSifqY8qsbEuzw1auYYhIR1BDBkpltc8462OSBEt2Q72E=,iv:/Y8iWKR2AjvJYyS2oVYu/pRWBNSExQUJeV3LAEFi86E=,tag:7VOpNpLgH5S7fMvBt7Y8WQ==,type:str]
+    pgp:
+    -   created_at: '2021-02-24T05:22:18Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQGMAz2OwhEturU+AQv/SN4lFXbnImi1JNDo+zLGeeOZT5xsSmFIAUR0R4iukZ0S
+            bfVBc/F15W9i5w2KkbYQKjpB/t+rJX4FXo/0YoRyNQ8vDEqwXbK/y+VNPl/Cg47+
+            1kgHsLYgK7DdXmpJwgh6Ph+N4sREkwKAZe6Wfpu6qIX+FX2wLmBTL90rSpkuejug
+            qnDAUAwYvjReQGmD16oeDAzHGLVct1nUiaIGerR04iS7hyImrfWHA+VIMyib1xdR
+            l6DdjW4yfEkM60lXz2aJ/beYWlfK3I55uIQlM9Y7Y9sphMVRn1XXqZuSK+RWQJo4
+            k9/gXc9ixwG3MZkuzhV57cNNKuexc0/kEhXyuHK0+hZEEZai6b57skE+zTPKc81B
+            sskPXCC+zZmxDZr0hpHWlqoJ4kbFxXLWKbXV2eRzPL3U4oHxS22FjHr3GoAA09YR
+            SiRCNBPKmKFm0oL4OHH8cuI3oH7omzEeptH7Mic7e8c9ZMh13cqs+KzYrBO7EWv/
+            LV6cQvEUJMRzRog4fBEI0lwB8PEYMpKxzUpNenZhwHvtX0cj9BZlY7ZzoJ5/zvRJ
+            TZyE4ZUtdu9o3VqFiqXzkT2GYikWrMLOWnicg64iFGGFNGA5anCdUQ0JjD4mZYSh
+            ru1nbq/w8wlQwBnpTQ==
+            =QXDb
+            -----END PGP MESSAGE-----
+        fp: B95DBC80D9BD192B0811AC61BB73E1527E549D6C
+    encrypted_regex: ^(data|stringData)$
+    version: 3.6.1
