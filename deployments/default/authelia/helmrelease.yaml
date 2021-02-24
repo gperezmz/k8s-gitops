@@ -18,7 +18,7 @@ spec:
   install:
     remediation:
       retries: 3
-  interval: 5m0s0s
+  interval: 5m0s
   values:
     additionalVolumeMounts:
       - mountPath: /app/secrets
