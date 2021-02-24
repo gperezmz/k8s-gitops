@@ -1,12 +1,36 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: traefik-forward-auth-helm-values
-  namespace: traefik
+    name: traefik-forward-auth-helm-values
+    namespace: traefik
 stringData:
-  values.yaml: |
-    secret: 8m84gz3o8xxtem6daoqye445mprn629o9i4yyurk
-    providers:
-      oidc:
-        clientSecret: hv2xatm8scyn5297wxqyaz2f5nr5oxsk9zrdj2af
+    values.yaml: ENC[AES256_GCM,data:TF3mHuFIM29A+g24qkLTvikxjDOiaLs5L/cxSVci3Cp13T8PPFGAIQynM+ncfzBDYtZzWi25jEyPvNok8/wi9vjvjDokun2Horc0FAI0QGshlNt7KW1B6wTpKGGHw+JoZMETpfr4QhsJtfzmwUG0qPkUAQ4HxLVwqM/lbULOmw==,iv:5VMD867zbkCrlsGHssqy0aY6f/MrAqoLZQXYsQi/MfI=,tag:7P41QYUdT/P68Nb8SVwnQQ==,type:str]
 type: Opaque
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-02-24T04:04:03Z'
+    mac: ENC[AES256_GCM,data:JwyGbXxZJwCp0xMa8hr/pQB4zrReyJ0+IpxYf0qUVJMN6IKU7dCYim+YU+tAZgN8eAIGu3L7UJWeHr3J0ag6KY7wjPKSP6yz92GH5PSYENzdD/2wBwOcZoiz9WILDMt7vwT/9xhwUUpTvb7/urG0nEU8Jq+HU23s1ifcMggr4XQ=,iv:wHDyizEGIvb+R/m42wLATrR5YYxtrcMWpPM26m82+S4=,tag:WJ8rfhKwCdLIf5qcpGurSg==,type:str]
+    pgp:
+    -   created_at: '2021-02-24T04:04:02Z'
+        enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQGMAz2OwhEturU+AQv/Rlbp3cqowx+9+0YdudCvrkPSb1zqwLfw5/Y/JRc+WObu
+            p8uHfu9MPnayErckls+oPli1yWvOWk7wNWEGWGT1ziR4qmMxSQrW12V51zA238mQ
+            fjy3kSWkm4K6mWH+DB1ooV7xDgbk5h/JlgtjLcAoV1QVaJTvs/vtXXfd/Duq5FG0
+            Umq9eer66B8L7S68c0io+p02yZCst5VyeKVo18D3OPHQR+hoCE3MNqj1Q4fYoUkA
+            cj0s6peSBTNU11IzXMhUrOakKSG556NyIzGJJ5aPJmo9G9Z9r9XGSTrxryIQCbdz
+            uJopL+IYMjSkfH2EvoUp03jZE81faQ5L2uDlCmgNuKl/2TeDvTOjQtOPHr9qlsiR
+            19LDtjUTgRuZvxSrSpdMiBLApSZ/b3psAx0IA2UZ+6yZNu2U9b4fr+rlbUJ3/qKC
+            2IgAgujzo1fa5bX+y1c2tK5JhDNOU4IgVwCm58r3ZonBf77SfjfdN3i0PlU92Cee
+            ArpQMcQM4LfaBsq4hz370l4BF7bMulX8GZtZFR0NqfJrf2Kj1krjCVSm7LrwbdOV
+            vuus7gjEFIGqSkir8burLOm3W4VewEJvoRHwsQlNYUc+ztq8FzVJ7BFGxPurplsN
+            BXT0POpbMMSt6eJ0/dhD
+            =F6ey
+            -----END PGP MESSAGE-----
+        fp: B95DBC80D9BD192B0811AC61BB73E1527E549D6C
+    encrypted_regex: ^(data|stringData)$
+    version: 3.6.1
