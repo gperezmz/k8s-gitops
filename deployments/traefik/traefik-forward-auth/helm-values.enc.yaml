@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: traefik-forward-auth-helm-values
+  namespace: traefik
+stringData:
+  values.yaml: |
+    secret: 8m84gz3o8xxtem6daoqye445mprn629o9i4yyurk
+    providers:
+      oidc:
+        clientSecret: hv2xatm8scyn5297wxqyaz2f5nr5oxsk9zrdj2af
+type: Opaque

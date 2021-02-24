@@ -1,0 +1,55 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: traefik-forward-auth
+  namespace: traefik
+spec:
+  chart:
+    spec:
+      chart: traefik-forward-auth
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+      version: 1.0.5
+  interval: 5m0s
+  install:
+    remediation:
+      retries: 3
+  values:
+    image:
+      repository: thomseddon/traefik-forward-auth
+      tag: 2.2.0
+
+    authHost: auth.perezmz.com
+    
+    cookie:
+      domain: perezmz.com
+    
+    default:
+      provider: oidc
+    
+    providers:
+      oidc:
+        enabled: true
+        issuerUrl: https://dex.perezmz.com
+        clientId: forward-auth
+    
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik
+        traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
+      hosts:
+        - host: auth.perezmz.com
+          paths:
+            - /
+      tls:
+        - secretName: perezmz-com-tls
+    
+    middleware:
+      enabled: true
+      name: forward-auth
+  valuesFrom:
+    - kind: Secret
+      name: traefik-forward-auth-helm-values
