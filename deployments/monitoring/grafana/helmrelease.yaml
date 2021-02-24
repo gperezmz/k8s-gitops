@@ -24,8 +24,6 @@ spec:
       GF_EXPLORE_ENABLED: true
       GF_PANELS_DISABLE_SANITIZE_HTML: true
       GF_LOG_FILTERS: rendering:debug
-    admin:
-      existingSecret: grafana-credentials
     grafana.ini:
       server:
         root_url: "https://grafana.perezmz.com"
@@ -40,8 +38,6 @@ spec:
         mode: console
       grafana_net:
         url: https://grafana.net
-      auth.basic:
-        disable_login_form: false
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
@@ -132,3 +128,6 @@ spec:
       runAsUser: 1001
       runAsGroup: 1001
       fsGroup: 1001
+  valuesFrom:
+    - kind: Secret
+      name: grafana-helm-values
