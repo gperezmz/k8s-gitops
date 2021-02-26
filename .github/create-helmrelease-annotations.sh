@@ -5,7 +5,7 @@ shopt -s globstar
 # shellcheck disable=SC2155
 REPO_ROOT=$(git rev-parse --show-toplevel)
 CLUSTER_ROOT="${REPO_ROOT}/cluster"
-HELM_REPOSITORIES="${CLUSTER_ROOT}/flux-system/helm-chart-repositories"
+HELM_REPOSITORIES="${CLUSTER_ROOT}/deployments/flux-system/helm-chart-repositories"
 YAML_FILES=$(find ${REPO_ROOT} -type f -iname "*.yaml")
 
 # Ensure yq exist
