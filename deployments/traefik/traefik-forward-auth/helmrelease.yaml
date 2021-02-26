@@ -6,6 +6,7 @@ metadata:
 spec:
   chart:
     spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: traefik-forward-auth
       sourceRef:
         kind: HelmRepository

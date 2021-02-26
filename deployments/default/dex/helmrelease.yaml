@@ -6,6 +6,7 @@ metadata:
 spec:
   chart:
     spec:
+      # renovate: registryUrl=https://charts.dexidp.io
       chart: dex
       version: 0.0.3
       sourceRef:
