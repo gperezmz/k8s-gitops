@@ -17,6 +17,7 @@ spec:
   install:
     remediation:
       retries: 3
+    skipCRDs: true
   interval: 5m0s
   values:
     cainjector:

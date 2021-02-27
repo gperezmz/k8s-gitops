@@ -17,6 +17,7 @@ spec:
   install:
     remediation:
       retries: 3
+    skipCRDs: true
   values:
     deployment:
       annotations:
