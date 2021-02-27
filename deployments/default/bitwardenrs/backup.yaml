@@ -60,7 +60,7 @@ spec:
                 - /bin/sh
               args:
                 - -c
-                - "sqlite3 /data/db.sqlite3 \".backup ''/data/backups/db-$(date +%Y%m%d-%H%M).sqlite3''\""
+                - "sqlite3 /data/db.sqlite3 \".backup '/data/backups/db-$(date +%Y%m%d-%H%M).sqlite3'\""
               volumeMounts:
                 - mountPath: /data
                   name: bitwardenrs-config
