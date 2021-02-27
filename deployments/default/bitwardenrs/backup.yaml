@@ -18,6 +18,29 @@ spec:
             runAsUser: 1001
             fsGroup: 1001
           initContainers:
+            - name: rclone-conf
+              image: alpine/git:v2.30.1
+              env:
+                - name: GITHUB_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      key: github-token
+                      name: github-token
+              command:
+                - /bin/sh
+                - -ec
+                - |
+                  set -o nounset
+                  set -o errexit
+                  if [ -z "${GITHUB_TOKEN}" ]; then
+                    printf "%s - Error - Missing GITHUB_TOKEN environment variable" "$(date -u)"
+                    exit 1
+                  fi
+                  git clone --depth 1 "https://${GITHUB_TOKEN}:x-oauth-basic@github.com/gperezmz/rclone-config.git" /shared/rclone-conf
+                  exit 0
+              volumeMounts:
+                - mountPath: /shared
+                  name: shared
             - name: busybox-shell
               image: busybox
               args:
@@ -27,7 +50,6 @@ spec:
               volumeMounts:
                 - mountPath: /data
                   name: bitwardenrs-config
-          containers:
             - name: sqlite3
               image: keinos/sqlite3:latest
               imagePullPolicy: Always
@@ -38,11 +60,34 @@ spec:
                 - /bin/sh
               args:
                 - -c
-                - "sqlite3 /data/db.sqlite3 \".backup '/data/backups/db-$(date +%Y%m%d-%H%M).sqlite3'\""
+                - 'sqlite3 /data/db.sqlite3 ".backup ''/data/backups/db-$(date +%Y%m%d-%H%M).sqlite3''"'
               volumeMounts:
+                - mountPath: /data
+                  name: bitwardenrs-config
+          containers:
+            - name: rclone
+              image: rclone/rclone:1.54
+              env:
+                - name: TZ
+                  value: Europe/Madrid
+              command:
+                - rclone
+              args:
+                - -v
+                - --config
+                - /shared/rclone-conf/rclone.conf
+                - sync
+                - --ignore-errors
+                - /data/backups
+                - onedrive-crypt:/bitwardenrs
+              volumeMounts:
+                - mountPath: /shared
+                  name: shared
                 - mountPath: /data
                   name: bitwardenrs-config
           volumes:
             - name: bitwardenrs-config
               persistentVolumeClaim:
                 claimName: bitwardenrs-config
+            - name: shared
+              emptyDir: {}
