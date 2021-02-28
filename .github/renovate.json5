@@ -11,19 +11,19 @@
   // only rebase PRs when there's a conflict
   "rebaseWhen": "conflicted",
   "kubernetes": {
-    "fileMatch": ["\\.yaml$"],
+    "fileMatch": ["deployments/.+\\.yaml$"],
     "ignorePaths": [
       "cluster/flux-system/",
       ".github"
     ]
   },
   "helm-values": {
-    "fileMatch": ["cluster/.+helmrelease\\.yaml$"]
+    "fileMatch": ["deployments/.+helmrelease\\.yaml$"]
   },
   "regexManagers": [
     // regexManager to read and process HelmRelease files
     {
-      "fileMatch": ["cluster/.+helmrelease\\.yaml$"],
+      "fileMatch": ["deployments/.+helmrelease\\.yaml$"],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
       ],
