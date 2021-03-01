@@ -1,0 +1,101 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: mariadb-backup
+spec:
+  schedule: "0 8,20 * * *"
+  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 3
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          securityContext:
+            runAsGroup: 1001
+            runAsUser: 1001
+            fsGroup: 1001
+          initContainers:
+            - name: rclone-conf
+              image: alpine/git:v2.30.1
+              env:
+                - name: GITHUB_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      key: github-token
+                      name: github-token
+                - name: MARIADB_ROOT_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: mariadb-root-password
+                      name: mariadb-passwords
+              command:
+                - /bin/sh
+                - -ec
+                - |
+                  set -o nounset
+                  set -o errexit
+                  if [ -z "${GITHUB_TOKEN}" ]; then
+                    printf "%s - Error - Missing GITHUB_TOKEN environment variable" "$(date -u)"
+                    exit 1
+                  fi
+                  git clone --depth 1 "https://${GITHUB_TOKEN}:x-oauth-basic@github.com/gperezmz/rclone-config.git" /shared/rclone-conf
+                  exit 0
+              volumeMounts:
+                - mountPath: /shared
+                  name: shared
+            - name: busybox-shell
+              image: busybox
+              args:
+                - /bin/sh
+                - -c
+                - "(mkdir /data/backups || true) && (cd /data/backups && ls -tp | grep -v '/$' | tail -n +14 | xargs -I {} rm -- {})"
+              volumeMounts:
+                - mountPath: /data
+                  name: default-data
+                  subPath: mariadb
+            - name: mariadb
+              image: bitnami/mariadb:10.5.9
+              imagePullPolicy: Always
+              env:
+                - name: TZ
+                  value: Europe/Madrid
+              command:
+                - /bin/sh
+              args:
+                - -c
+                - "mysqldump -u root --password=${MARIADB_ROOT_PASSWORD} > /data/backups/backup-$(date +%Y%m%d-%H%M).sql"
+              volumeMounts:
+                - mountPath: /data
+                  name: default-data
+                  subPath: mariadb
+          containers:
+            - name: rclone
+              image: rclone/rclone:1.54
+              env:
+                - name: TZ
+                  value: Europe/Madrid
+              command:
+                - rclone
+              args:
+                - -v
+                - --config
+                - /shared/rclone-conf/rclone.conf
+                - sync
+                - --ignore-errors
+                - /data/backups
+                - onedrive-crypt:/mariadb
+              volumeMounts:
+                - mountPath: /shared
+                  name: shared
+                - mountPath: /data
+                  name: default-data
+                  subPath: mariadb
+          volumes:
+            - name: default-data
+              persistentVolumeClaim:
+                claimName: default-data
+            - name: shared
+              emptyDir: {}
