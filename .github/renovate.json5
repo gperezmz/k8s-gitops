@@ -29,14 +29,22 @@
       ],
       "datasourceTemplate": "helm"
     },
-    // regexManager to read and process prometheus-operator images
+    // regexManager to read and process kube-prometheus-stack crds
     {
-      "fileMatch": ["./.+\\.yaml$"],
+      "fileMatch": ["core/crds/kube-prometheus-stack/crds\\.yaml$"],
       "matchStrings": [
-        "\\/prometheus-operator\\/v(?<currentValue>.*?)\\/"
+        "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n"
       ],
-      "depNameTemplate": "quay.io/prometheus-operator/prometheus-operator",
-      "datasourceTemplate": "docker"
+      "dataSourceTemplate": "helm"
+    },
+    // regexManager to read and process traefik crds
+    {
+      "fileMatch": ["core/crds/traefik/crds\\.yaml$"],
+      "matchStrings": [
+        "registryUrl=(?<registryUrl>.*?)\n *tag: v(?<currentValue>.*)\n"
+      ],
+      "depNameTemplate": "traefik",
+      "dataSourceTemplate": "helm"
     }
   ],
   "packageRules": [

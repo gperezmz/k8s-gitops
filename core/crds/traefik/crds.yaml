@@ -8,7 +8,8 @@ spec:
   interval: 10m0s
   url: https://github.com/traefik/traefik-helm-chart.git
   ref:
-    semver: ">=9.14.2 <9.15.0"
+    # renovate: registryUrl=https://helm.traefik.io/traefik
+    tag: v9.14.2
   ignore: |
     # exclude all
     /*
