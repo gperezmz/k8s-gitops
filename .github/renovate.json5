@@ -23,28 +23,15 @@
   "regexManagers": [
     // regexManager to read and process HelmRelease files
     {
-      "fileMatch": ["deployments/.+helmrelease\\.yaml$"],
-      "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
+      "fileMatch": [
+        "deployments/.+helmrelease\\.yaml$",
+        "core/crds/kube-prometheus-stack/crds\\.yaml$"
       ],
-      "datasourceTemplate": "helm"
-    },
-    // regexManager to read and process kube-prometheus-stack crds
-    {
-      "fileMatch": ["core/crds/kube-prometheus-stack/crds\\.yaml$"],
       "matchStrings": [
+        "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n",
         "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n"
       ],
-      "dataSourceTemplate": "helm"
-    },
-    // regexManager to read and process traefik crds
-    {
-      "fileMatch": ["core/crds/traefik/crds\\.yaml$"],
-      "matchStrings": [
-        "registryUrl=(?<registryUrl>.*?)\n *tag: v(?<currentValue>.*)\n"
-      ],
-      "depNameTemplate": "traefik",
-      "dataSourceTemplate": "helm"
+      "datasourceTemplate": "helm"
     }
   ],
   "packageRules": [
