@@ -46,7 +46,7 @@ spec:
               args:
                 - /bin/sh
                 - -c
-                - 'rm /data/backups/*'
+                - 'rm /data/backups/* || true'
               volumeMounts:
                 - mountPath: /data
                   name: bitwardenrs-config
