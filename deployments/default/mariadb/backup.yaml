@@ -66,7 +66,7 @@ spec:
                 - /bin/sh
               args:
                 - -c
-                - "mysqldump -u root --password=${MARIADB_ROOT_PASSWORD} > /data/backups/backup-$(date +%Y%m%d-%H%M).sql"
+                - "mysqldump -u root --password=${MARIADB_ROOT_PASSWORD} --databases claywithme > /data/backups/backup-$(date +%Y%m%d-%H%M).sql"
               volumeMounts:
                 - mountPath: /data
                   name: default-data
