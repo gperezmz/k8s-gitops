@@ -35,7 +35,7 @@
         // traefik
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n",
         // cert-manager
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/v(?<currentValue>.*?)\\/"
+        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/"
       ],
       "datasourceTemplate": "helm"
     }
