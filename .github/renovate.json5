@@ -25,12 +25,17 @@
     {
       "fileMatch": [
         "deployments/.+helmrelease\\.yaml$",
-        "core/crds/.+crds\\.yaml$"
+        "core/crds/.+\\.yaml$"
       ],
       "matchStrings": [
+        // helmrelease
         "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n",
+        // kube-prometheus-stack
         "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
-        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n"
+        // traefik
+        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n",
+        // cert-manager
+        "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/v(?<currentValue>.*?)\\/"
       ],
       "datasourceTemplate": "helm"
     }
