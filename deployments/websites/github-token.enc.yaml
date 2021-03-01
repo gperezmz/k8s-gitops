@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: github-token
+    namespace: websites
+stringData:
+    github-token: ENC[AES256_GCM,data:W9tcpzi5FOuPX+fldOEG/2sXQmVI95MXRGPipP3V6UJnBZPMePkIYA==,iv:OL8ZVmDfSwuGVhC4nH0dYwkZYpd0denwyl9BTOYDKzU=,tag:/b+SI+K4bCvMKyrqgRp1mA==,type:str]
+type: Opaque
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-03-01T02:57:56Z'
+    mac: ENC[AES256_GCM,data:qgtTgiAV5x9lDA9IYy5Dj80dTxMD8xr+LikFDC2BBbLzp4xKnoH2gyvDPji56QgBZV51Xzj+yEeYYcDYb1IVQXqq8tgER4zNZnNOCNaDfYrsUmQ7hTla9NJ/BVNmUEyEicZ4qy57a3c5dQJdJOdBbCY9Y84xOQiRpzTg0j2+PLE=,iv:QXhye3JZ9cV4ePw+DQLrzTMaRhNdMHRhGZEyJxB5zs4=,tag:/0LKPZAkP7suM6ZotGyotA==,type:str]
+    pgp:
+    -   created_at: '2021-03-01T02:57:55Z'
+        enc: "-----BEGIN PGP MESSAGE-----\r\n\r\nhQGMAz2OwhEturU+AQwArknkG09nfO/G7JfgmrnZcX18pgUg/qka7cQBCNRUZgZk\r\nvKMxK4g0Q/6wryDv+aVKLY/NHxlfsPZET4Y75dd7whwP54RwsCyVFj8sg0+6tfrU\r\n5MsQ6cKvB1oYdhtPI4lMt3DdeqSG8bsmLRVKIH+WGLCNNlIbFsPG/NoWCAv2592z\r\ndIJNJFSkaua/HcrKNxaPNvPbBOk/SkYpT+bNOtXZAzRLRVNJpQ57JiiiGLd6OKVp\r\nbsVEhdLBTOQPeWTdlze5SAv6CEdfl1tfrYhmBFVrDkgfRa85TRyHBupb8p0msg8v\r\nGaN4VUdYwPoEpnv4zm0IzYNE20rDk9A+LqwpCUQJrIYU7gUK0xEV9ESMwZejFxla\r\nzf0WG13zvU+EtZYhej7v0bwHopojY5MCACxCjnnoaf3gWfpdsEhFZWG3eGLeZkgO\r\n+EZFHYvC777QVLCgUtkuYxqqzmGBFS4Bt1e9m6NRoqll69tb+kfz8/Es9aPniMuz\r\nVr0bWkKS3UlFpnPjC1eT0l4BQjYv8kirUZ05warh3YWD1nJezrTW6L5kvPlZ9dAl\r\njMNzOqM8DKCbgtzWe1hraHLhTOPO8D1EDbFwxrKcEkzSBJa9q7fZ9TFpV+t9Mif6\r\nXFZgUXG+wwEEM9j1BNLB\r\n=Vsj2\r\n-----END
+            PGP MESSAGE-----\r\n"
+        fp: B95DBC80D9BD192B0811AC61BB73E1527E549D6C
+    encrypted_regex: ^(data|stringData)$
+    version: 3.6.1
