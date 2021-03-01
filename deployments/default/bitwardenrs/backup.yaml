@@ -46,10 +46,27 @@ spec:
               args:
                 - /bin/sh
                 - -c
-                - "(mkdir /data/backups || true) && (cd /data/backups && ls -tp | grep -v '/$' | tail -n +6 | xargs -I {} rm -- {})"
+                - 'rm /data/backups/*'
               volumeMounts:
                 - mountPath: /data
                   name: bitwardenrs-config
+            - name: rclone-cleanup
+              image: rclone/rclone:1.54
+              env:
+                - name: TZ
+                  value: Europe/Madrid
+              command:
+                - rclone
+              args:
+                - -v
+                - --config
+                - /shared/rclone-conf/rclone.conf
+                - --min-age 24h
+                - delete
+                - onedrive-crypt:/bitwardenrs
+              volumeMounts:
+                - mountPath: /shared
+                  name: shared
             - name: sqlite3
               image: keinos/sqlite3:latest
               imagePullPolicy: Always
@@ -76,7 +93,7 @@ spec:
                 - -v
                 - --config
                 - /shared/rclone-conf/rclone.conf
-                - sync
+                - copy
                 - --ignore-errors
                 - /data/backups
                 - onedrive-crypt:/bitwardenrs
