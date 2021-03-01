@@ -26,11 +26,15 @@ spec:
                     secretKeyRef:
                       key: github-token
                       name: github-token
+                - name: MARIADB_HOSTNAME
+                  value: mariadb.default.svc.cluster.local
                 - name: MARIADB_ROOT_PASSWORD
                   valueFrom:
                     secretKeyRef:
                       key: mariadb-root-password
                       name: mariadb-passwords
+                - name: DATABASES
+                  value: claywithme
               command:
                 - /bin/sh
                 - -ec
@@ -66,7 +70,7 @@ spec:
                 - /bin/sh
               args:
                 - -c
-                - "mysqldump -u root --password=${MARIADB_ROOT_PASSWORD} --databases claywithme > /data/backups/backup-$(date +%Y%m%d-%H%M).sql"
+                - "mysqldump -h ${MARIADB_HOSTNAME} -u root --password=${MARIADB_ROOT_PASSWORD} --databases ${DATABASES} > /data/backups/backup-$(date +%Y%m%d-%H%M).sql"
               volumeMounts:
                 - mountPath: /data
                   name: default-data
