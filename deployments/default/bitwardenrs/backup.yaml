@@ -61,7 +61,8 @@ spec:
                 - -v
                 - --config
                 - /shared/rclone-conf/rclone.conf
-                - --min-age 24h
+                - --min-age
+                - 24h
                 - delete
                 - onedrive-crypt:/bitwardenrs
               volumeMounts:
