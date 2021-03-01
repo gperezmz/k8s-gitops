@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: claywithme-data
+spec:
+  storageClassName: local-storage
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/data/websites/claywith-me"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: claywithme-data
+  namespace: websites
+spec:
+  resources:
+    requests:
+      storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: local-storage
+  volumeName: claywithme-data

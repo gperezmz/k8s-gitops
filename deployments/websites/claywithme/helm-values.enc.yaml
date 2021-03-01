@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: claywithme-helm-values
+    namespace: websites
+stringData:
+    values.yaml: ENC[AES256_GCM,data:8fro22Jn1uvvt8O/TRM5UekiBuDVRAaWBiViyzPPt98nLJsoCqGAjAId5fgfoH05ruGahIL5XiEbynWCnP/IveQFcwRQcxnaGdkkqZVt8g9je/o9nxibmPCU/zK43XkdlnWtr8Beji5y5y+X+IHNSSiSQXNl/m0nXEJypz+Qa4ien/xrvakrdp1egdhVEs1Xh0zyv9X/C/C69Mhh2+Fgr2oye5AkyXsfFF4v20T1cWOuJ3c8eJ8Y4fEi7pbehW6KyKt9RQ7mW8+HONc8PuuYfdn0K8aXhzD39G/dYxL+L2in/jyekX9LFQbVs1V8b3h2Sma3yGuAvLpvVDe8Akww6sA0kijyBW4mdTEyQBOdgWsPBB122Yff+xDI6jTYqyU85/n+g7AIkoeCmRMod4mQe93jPzNC0wxX1Zmz//6tiRkQkAcusmlyc1ATV0iZtQwmse70wPD/pU90kaPOCGwwrzgHmmvamKib6SD6Z+hQmiTazqsJfK0Hr9PA/LrNu2QX76vhfig03lJl9k3XudTNDWzwFm/00SZjBAztLmFD/rDxIA6PK6HURmEfKBfJkiPM0DzpOpSne0MZvjhqbrCsZ3vIQC4Y9Vph3Q2koG/nX8dtuhO3QU/51dV7wHXmfx96RDdP6abuPzhPaDaSaFkI14jzm54U7Q0=,iv:bPgsYDUyGjGeaKE/zycNthJj9pPIuMETiw7sKaCO01M=,tag:wP5xi4fFrEdtlnRHCYIOBQ==,type:str]
+type: Opaque
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-03-01T01:15:17Z'
+    mac: ENC[AES256_GCM,data:2Xj66gpLDFOK6Ze078Y0K2Adz0Mq4Wk7U85Yz+Am7d4jh045S5fIBwL/CFelxAJxNGVhwR7W4azV/XPKll2uWD4DQSMH3l93iNVmy1BCibHuu9kcMF0vvk7v6abJzpHnEWHY9VQxfz4ch16DZQmL/34Nf0bAOujKocv5EBLnXaY=,iv:oKAn9iNx3PQ0UfzoF7CbyC+HQRvBnAR3acQlPpfrn/4=,tag:X6rmHMg/xQ5QuQCuSUoZ4w==,type:str]
+    pgp:
+    -   created_at: '2021-03-01T01:15:17Z'
+        enc: "-----BEGIN PGP MESSAGE-----\r\n\r\nhQGMAz2OwhEturU+AQv/TxFOPyeuKnDsD9FZwP/vwtfB1L6Rf0Hwrgy7fQZTwNeE\r\nqYlFBODZDMOsHhrkHxx8age+6dtJnu/MWiph79QQm9Lz+7zUsWokx8f9cuFkUplK\r\nhV4Xy/TwQRGCo7E5C5IdxDrcRMT0zb9gvtT9aiuimrm/1UKv8qJNEbR9NFGCURM8\r\ntLQDfz8C5SML8ikrN/DOqdHD813+Q42OclUVtAVaqQO+dNtf4exRNK5nxyIbumrT\r\nfmTpk+bhgXRIgBuUCu/aHd6vTGi8YpoUxHPJedQgs4OtAxDaTjFAXmWhvgT5698q\r\nK9AsFa2YcPD0KtMGy1p7dBytiEgns8YoIuQU/C8W1FQKf5WdGH0bMxsd5oEqCN9k\r\nf/gRZ6q0hnZUThuMMNCBsygU5mJ5YAgfQmSrKrFCIBMFjZ5eaBM6UgW/vte9mTEX\r\n2Pj4SOmCx7fJfQCSnRL8UnbMprCQuCsGnqHR/FAdpwLt/FNQJLbyj2Rxh9fiO6cf\r\nqG8SFBQYK1w/q2xMqQHc0lwB7NfgSo5IqhQkDVzi5tyG/1d1/A2tA6Ae+6ahbPer\r\nYylvlPS3ZX5FiohrENHvEmyEJLlSHfNl2NACaUYOpNOSyX/qZpBwPwAYWtdZOQdi\r\n10mOeuA3fmi/i9XG0Q==\r\n=apHO\r\n-----END
+            PGP MESSAGE-----\r\n"
+        fp: B95DBC80D9BD192B0811AC61BB73E1527E549D6C
+    encrypted_regex: ^(data|stringData)$
+    version: 3.6.1
