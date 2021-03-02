@@ -46,17 +46,35 @@ spec:
               args:
                 - /bin/sh
                 - -c
-                - "(mkdir /data/backups || true) && (cd /data/backups && ls -tp | grep -v '/$' | tail -n +14 | xargs -I {} rm -- {})"
+                - 'rm /data/backups/* || true'
               volumeMounts:
                 - mountPath: /data
                   name: default-data
                   subPath: mariadb
+            - name: rclone-cleanup
+              image: rclone/rclone:1.54
+              env:
+                - name: TZ
+                  value: UTC
+              command:
+                - rclone
+              args:
+                - -v
+                - --config
+                - /shared/rclone-conf/rclone.conf
+                - --min-age
+                - 7d
+                - delete
+                - onedrive-crypt:/mariadb
+              volumeMounts:
+                - mountPath: /shared
+                  name: shared
             - name: mariadb
               image: bitnami/mariadb:10.5.9
               imagePullPolicy: Always
               env:
                 - name: TZ
-                  value: Europe/Madrid
+                  value: UTC
                 - name: MARIADB_HOSTNAME
                   value: mariadb.default.svc.cluster.local
                 - name: MARIADB_ROOT_PASSWORD
@@ -80,14 +98,14 @@ spec:
               image: rclone/rclone:1.54
               env:
                 - name: TZ
-                  value: Europe/Madrid
+                  value: UTC
               command:
                 - rclone
               args:
                 - -v
                 - --config
                 - /shared/rclone-conf/rclone.conf
-                - sync
+                - copy
                 - --ignore-errors
                 - /data/backups
                 - onedrive-crypt:/mariadb
