@@ -41,19 +41,37 @@ spec:
               volumeMounts:
                 - mountPath: /shared
                   name: shared
-          containers:
-            - name: rclone
+            - name: rclone-cleanup
               image: rclone/rclone:1.54
               env:
                 - name: TZ
-                  value: Europe/Madrid
+                  value: UTC
               command:
                 - rclone
               args:
                 - -v
                 - --config
                 - /shared/rclone-conf/rclone.conf
-                - sync
+                - --min-age
+                - 7d
+                - delete
+                - onedrive-crypt:/unifi
+              volumeMounts:
+                - mountPath: /shared
+                  name: shared
+          containers:
+            - name: rclone
+              image: rclone/rclone:1.54
+              env:
+                - name: TZ
+                  value: UTC
+              command:
+                - rclone
+              args:
+                - -v
+                - --config
+                - /shared/rclone-conf/rclone.conf
+                - copy
                 - --ignore-errors
                 - /data/data/backup/autobackup
                 - onedrive-crypt:/unifi
