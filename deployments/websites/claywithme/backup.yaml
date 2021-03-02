@@ -51,25 +51,40 @@ spec:
                   set -o nounset
                   set -o errexit
                   mkdir /data/backups || true
-                  cd /data/backups && ls -tp | grep -v '/$' | tail -n +14 | xargs -I {} rm -- {}
+                  rm /data/backups/* || true
                   tar zcvf /data/backups/wordpress-$(date +%Y%m%d-%H%M).tar.gz /data/wordpress/
                   exit 0
               volumeMounts:
                 - mountPath: /data
                   name: claywithme-data
-          containers:
-            - name: rclone
+            - name: rclone-cleanup
               image: rclone/rclone:1.54
               env:
                 - name: TZ
-                  value: Europe/Madrid
+                  value: UTC
               command:
                 - rclone
               args:
                 - -v
                 - --config
                 - /shared/rclone-conf/rclone.conf
-                - sync
+                - --min-age
+                - 7d
+                - delete
+                - onedrive-crypt:/claywithme
+          containers:
+            - name: rclone
+              image: rclone/rclone:1.54
+              env:
+                - name: TZ
+                  value: UTC
+              command:
+                - rclone
+              args:
+                - -v
+                - --config
+                - /shared/rclone-conf/rclone.conf
+                - copy
                 - --ignore-errors
                 - /data/backups
                 - onedrive-crypt:/claywithme
