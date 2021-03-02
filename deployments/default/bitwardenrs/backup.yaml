@@ -4,7 +4,7 @@ kind: CronJob
 metadata:
   name: bitwardenrs-backup
 spec:
-  schedule: "*/30 * * * *"
+  schedule: "0 * * * *"
   failedJobsHistoryLimit: 3
   successfulJobsHistoryLimit: 3
   concurrencyPolicy: Forbid
@@ -54,7 +54,7 @@ spec:
               image: rclone/rclone:1.54
               env:
                 - name: TZ
-                  value: Europe/Madrid
+                  value: UTC
               command:
                 - rclone
               args:
@@ -73,7 +73,7 @@ spec:
               imagePullPolicy: Always
               env:
                 - name: TZ
-                  value: Europe/Madrid
+                  value: UTC
               command:
                 - /bin/sh
               args:
@@ -87,7 +87,7 @@ spec:
               image: rclone/rclone:1.54
               env:
                 - name: TZ
-                  value: Europe/Madrid
+                  value: UTC
               command:
                 - rclone
               args:
