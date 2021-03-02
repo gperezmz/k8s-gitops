@@ -72,6 +72,9 @@ spec:
                 - 7d
                 - delete
                 - onedrive-crypt:/claywithme
+              volumeMounts:
+                - mountPath: /shared
+                  name: shared
           containers:
             - name: rclone
               image: rclone/rclone:1.54
