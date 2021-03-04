@@ -1,0 +1,7 @@
+{
+  "yaml.schemas": {
+    "Kubernetes": "deployments/*.yaml"
+  },
+  "files.eol": "\n",
+  "files.insertFinalNewline": true
+}
