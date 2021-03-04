@@ -1,3 +1,4 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -23,19 +24,19 @@ spec:
       tag: 2.2.0
 
     authHost: auth.perezmz.com
-    
+
     cookie:
       domain: perezmz.com
-    
+
     default:
       provider: oidc
-    
+
     providers:
       oidc:
         enabled: true
         issuerUrl: https://dex.perezmz.com
         clientId: forward-auth
-    
+
     ingress:
       enabled: true
       annotations:
@@ -47,7 +48,7 @@ spec:
             - /
       tls:
         - secretName: perezmz-com-tls
-    
+
     middleware:
       enabled: true
       name: forward-auth
