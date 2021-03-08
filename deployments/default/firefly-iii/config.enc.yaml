@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: firefly-iii-config
+stringData:
+    DB_DATABASE: ENC[AES256_GCM,data:bNvbsoaGBQ==,iv:ji4rYENYjHqq0MitESbhVajr3uLWex86vRnc5Q7D13s=,tag:tpPQ4XbZHmtf1EBDLbn3jw==,type:str]
+    DB_USERNAME: ENC[AES256_GCM,data:kbwDFEtWVw==,iv:xuOqbMABBjNhVhqpum6yt7qB4CflmTDruh5mYxOpXYk=,tag:Y/868iG3B48dfDoF7ueopA==,type:str]
+    DB_PASSWORD: ENC[AES256_GCM,data:SpnlH5pvadi/PPDk0JNDpnFv,iv:TAAxOJbOfM+JD1B8jNxRcs8vehQtabvqm+4I8IVWi1I=,tag:MWTQz3F55lTgLTf0z2Xv5g==,type:str]
+    APP_KEY: ENC[AES256_GCM,data:gbVyoeVvOVshWbgy/0KrAyYWlKbSes3HgxQ7GPjWjy8=,iv:BBOH26G597fLdRqoVNfB58A5Fokmzm326OZUj9vrYKs=,tag:NxdAmUOlorzC79Zdc5a9eA==,type:str]
+type: Opaque
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-03-08T02:07:15Z'
+    mac: ENC[AES256_GCM,data:VwfTKwFcCbK9Ehe+mLo3hHTPWSCsUAfVT0MtG+IZ4q0lipsJ5nYj1g/4W43COVrkVvaC1YE16vIvxXzrLw0zZQAMhlqNIxHBV5cAnhiuK+XLXIw3KSBDBhpopGCO/lLLA7srLs5Xb8sWE94+nBS+bG0eZb7ZRhVy+UcfT1fevJM=,iv:qIN1GrwoOTb5TyxKWOUvtrPuS4J7WTATVrg6YHkkSJI=,tag:kRKGfY3PwnS3OjogiZBmHA==,type:str]
+    pgp:
+    -   created_at: '2021-03-08T02:07:14Z'
+        enc: "-----BEGIN PGP MESSAGE-----\r\n\r\nhQGMAz2OwhEturU+AQwAhLmW0AMPIYjQ31LTTf8E/XLq7kkCSiZfMML1siyzfiRZ\r\n8fnqNpJGdoUahbm+uSVL2MDbKECi9VROdXeNRggPQKgSYPxgTPFvZDDl6CAtgQCP\r\npxf0g/hz6hnG7moIt6OklkAHhIvu4AYlECUSP6Tkao7nFzRY4ebf5fjrtKGPVmCw\r\nPyUqDxnXb7fBgB740kfMww0iLmm1+jD+ZWAGVLpa37bbLN6hHlFIQekmnZfM6lAQ\r\nQLsUMt4faBoN6ITGgOHA1sZ6G4G/3ga5NXK1pIRuuRxvY3tis4HwyrCesF618Z69\r\nXSx46UCa+2znwzpAy5SnXC6cMsjFjiRNTyJgd6zVlhAjC9Pzul9zCNFaRb9B5CMi\r\n4owbGLBiqX1KvdiqimMcxFVh6uNjSRIAdqOIc88hAuWiJAuKWhs7eMFjfM4MZKYZ\r\ntkrIq6gAoksWq0zKuGLWrDa23tWiU427mXyvWrFGAAsBx3fcrEKVP6LYUkBIHMNy\r\n0FpJ8uYEql+M2ZzHmuHe0lwB7PA5viSfyz0BTszs7IRK9y7zcITjclOrZWqHfR/Z\r\njPYZo6pTaWY8+6UQsYt7Nz5Y94Hxjnjy8CKbqDpX7LAebkYnQEEsNX6e1pNSdbg4\r\nmDP7wQ4UYgmgXVTxGg==\r\n=luDN\r\n-----END
+            PGP MESSAGE-----\r\n"
+        fp: B95DBC80D9BD192B0811AC61BB73E1527E549D6C
+    encrypted_regex: ^(data|stringData)$
+    version: 3.6.1
