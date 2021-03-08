@@ -30,6 +30,7 @@ spec:
       DB_PORT: 3306
       DB_CONNECTION: mysql
       APP_URL: https://firefly.perezmz.com
+      TRUSTED_PROXIES: '**'
 
     ingress:
       enabled: true
