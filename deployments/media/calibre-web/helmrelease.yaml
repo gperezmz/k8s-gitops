@@ -45,9 +45,11 @@ spec:
     persistence:
       config:
         enabled: true
+        mountPath: /config
         existingClaim: media-data
         subPath: calibre/config
       books:
         enabled: true
+        mountPath: /books
         existingClaim: media-data
         subPath: calibre/books
