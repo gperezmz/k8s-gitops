@@ -42,14 +42,15 @@ spec:
       tls:
         - secretName: perezmz-com-tls
 
-    persistence:
-      config:
-        enabled: true
+    additionalVolumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: media-data
+
+    additionalVolumeMounts:
+      - name: data
         mountPath: /config
-        existingClaim: media-data
         subPath: calibre/config
-      books:
-        enabled: true
+      - name: data
         mountPath: /books
-        existingClaim: media-data
         subPath: calibre/books
