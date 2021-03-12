@@ -1,0 +1,53 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: calibre-web
+  namespace: media
+spec:
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: calibre-web
+      version: 3.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home
+        namespace: flux-system
+  interval: 5m0s
+  install:
+    remediation:
+      retries: 3
+  values:
+    image:
+      repository: linuxserver/calibre-web
+      tag: version-0.6.11
+
+    env:
+      TZ: Europe/Madrid
+      PUID: 1001
+      PGID: 1001
+      DOCKER_MODS: linuxserver/calibre-web:calibre
+
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      annotations:
+        traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
+      hosts:
+        - host: calibre.perezmz.com
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: perezmz-com-tls
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: media-data
+        subPath: calibre/config
+      books:
+        enabled: true
+        existingClaim: media-data
+        subPath: calibre/books
