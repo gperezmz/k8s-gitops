@@ -12,7 +12,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: wordpress
-      version: 10.6.10
+      version: 10.6.12
       sourceRef:
         kind: HelmRepository
         name: bitnami
