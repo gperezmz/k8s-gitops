@@ -7,11 +7,12 @@ metadata:
 spec:
   chart:
     spec:
-      chart: ./charts/plex
-      version: 1.x
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: plex
+      version: 3.0.0
       sourceRef:
-        kind: GitRepository
-        name: my-helm-charts
+        kind: HelmRepository
+        name: k8s-at-home
         namespace: flux-system
   interval: 5m0s
   install:
@@ -19,16 +20,14 @@ spec:
       retries: 3
   values:
     image:
-      repository: plexinc/pms-docker
-      tag: plexpass
+      repository: ghcr.io/k8s-at-home/plex
+      tag: v1.22.0.4163-d8c4875dd
 
     env:
       TZ: Europe/Madrid
-      PLEX_UID: 1001
-      PLEX_GID: 1001
-      HOSTNAME: plex.perezmz.com
       ADVERTISE_IP: https://plex.perezmz.com:443/,http://192.168.2.21:32400/
       ALLOWED_NETWORKS: 192.168.0.0/22,10.42.0.0/16
+      PLEX_PREFERENCE_1: LanNetworkBandwith=192.168.0.0/22\,10.42.0.0/16
 
     ingress:
       enabled: true
@@ -61,3 +60,8 @@ spec:
       - name: storage
         mountPath: /data
         subPath: media
+
+    podSecurityContext:
+      runAsUser: 1001
+      runAsGroup: 1001
+      fsGroup: 1001
