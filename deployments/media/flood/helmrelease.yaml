@@ -21,7 +21,7 @@ spec:
   values:
     image:
       repository: jesec/flood
-      tag: 4.5.0
+      tag: 4.5.1
       pullPolicy: Always
 
     env:
