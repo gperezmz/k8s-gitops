@@ -51,7 +51,7 @@ spec:
                 - mountPath: /data
                   name: bitwardenrs-config
             - name: rclone-cleanup
-              image: rclone/rclone:1.54
+              image: rclone/rclone:1.55
               env:
                 - name: TZ
                   value: UTC
@@ -84,7 +84,7 @@ spec:
                   name: bitwardenrs-config
           containers:
             - name: rclone
-              image: rclone/rclone:1.54
+              image: rclone/rclone:1.55
               env:
                 - name: TZ
                   value: UTC
