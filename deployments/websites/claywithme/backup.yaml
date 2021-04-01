@@ -58,7 +58,7 @@ spec:
                 - mountPath: /data
                   name: claywithme-data
             - name: rclone-cleanup
-              image: rclone/rclone:1.54
+              image: rclone/rclone:1.55
               env:
                 - name: TZ
                   value: UTC
@@ -77,7 +77,7 @@ spec:
                   name: shared
           containers:
             - name: rclone
-              image: rclone/rclone:1.54
+              image: rclone/rclone:1.55
               env:
                 - name: TZ
                   value: UTC

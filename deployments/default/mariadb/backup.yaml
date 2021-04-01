@@ -52,7 +52,7 @@ spec:
                   name: default-data
                   subPath: mariadb
             - name: rclone-cleanup
-              image: rclone/rclone:1.54
+              image: rclone/rclone:1.55
               env:
                 - name: TZ
                   value: UTC
@@ -95,7 +95,7 @@ spec:
                   subPath: mariadb
           containers:
             - name: rclone
-              image: rclone/rclone:1.54
+              image: rclone/rclone:1.55
               env:
                 - name: TZ
                   value: UTC
