@@ -37,6 +37,9 @@ spec:
       className: traefik
       hosts:
         - host: dex.perezmz.com
+          paths:
+            - path: /
+              pathType: Prefix
       tls:
         - secretName: perezmz-com-tls
   valuesFrom:
