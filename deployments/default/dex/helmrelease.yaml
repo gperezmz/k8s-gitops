@@ -34,8 +34,7 @@ spec:
 
     ingress:
       enabled: true
-      annotations:
-        kubernetes.io/ingress.class: traefik
+      className: traefik
       hosts:
         - host: dex.perezmz.com
           paths:
