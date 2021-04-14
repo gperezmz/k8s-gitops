@@ -32,6 +32,9 @@ spec:
         config:
           inCluster: true
 
+    service:
+      port: 5556
+
     ingress:
       enabled: true
       className: traefik
@@ -39,7 +42,7 @@ spec:
         - host: dex.perezmz.com
           paths:
             - path: /
-              pathType: Prefix
+              pathType: ImplementationSpecific
       tls:
         - secretName: perezmz-com-tls
   valuesFrom:
