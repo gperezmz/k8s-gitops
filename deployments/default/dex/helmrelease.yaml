@@ -40,6 +40,7 @@ spec:
         - host: dex.perezmz.com
           paths:
             - path: /
+              pathType: ImplementationSpecific
       tls:
         - secretName: perezmz-com-tls
   valuesFrom:
