@@ -61,6 +61,8 @@ spec:
         ingressClassName: traefik
         hosts:
           - prometheus.perezmz.com
+        paths:
+          - /
         tls:
           - hosts:
               - prometheus.perezmz.com
