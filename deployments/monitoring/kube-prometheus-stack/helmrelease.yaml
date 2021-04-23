@@ -63,6 +63,7 @@ spec:
           - prometheus.perezmz.com
         paths:
           - /
+        pathType: ImplementationSpecific
         tls:
           - hosts:
               - prometheus.perezmz.com
