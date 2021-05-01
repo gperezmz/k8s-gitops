@@ -20,7 +20,7 @@ EOF
 
 sleep 3s;
 
-kubectl apply -f https://docs.projectcalico.org/archive/v3.18/manifests/calico.yaml
+kubectl apply -f https://docs.projectcalico.org/archive/v3.19/manifests/calico.yaml
 
 until [ -f /etc/cni/net.d/10-calico.conflist ]
 do
