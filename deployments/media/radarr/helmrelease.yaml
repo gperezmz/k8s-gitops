@@ -9,7 +9,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: radarr
-      version: 11.1.0
+      version: 12.0.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
@@ -27,36 +27,35 @@ spec:
       TZ: Europe/Madrid
 
     ingress:
-      enabled: true
-      ingressClassName: traefik
-      annotations:
-        traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
-      hosts:
-        - host: radarr.perezmz.com
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: perezmz-com-tls
+      main:
+        enabled: true
+        ingressClassName: traefik
+        annotations:
+          traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
+        hosts:
+          - host: radarr.perezmz.com
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: perezmz-com-tls
 
-    additionalVolumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: media-data
-      - name: storage
-        persistentVolumeClaim:
-          claimName: media-storage
-
-    additionalVolumeMounts:
-      - name: data
+    persistence:
+      config:
+        enabled: true
+        type: hostPath
+        hostPath: /data/radarr
         mountPath: /config
-        subPath: radarr
-      - name: data
+      downloads:
+        enabled: true
+        type: hostPath
+        hostPath: /data/downloads
         mountPath: /downloads
-        subPath: downloads
-      - name: storage
+      movies:
+        enabled: true
+        type: hostPath
+        hostPath: /mnt/storage/media/movies
         mountPath: /movies
-        subPath: media/movies
 
     podSecurityContext:
       runAsUser: 1001
