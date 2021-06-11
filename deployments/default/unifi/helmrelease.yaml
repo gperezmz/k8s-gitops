@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: jacobalberty/unifi
-      tag: 6.2.17-rc
+      tag: 6.2.25
 
     env:
       TZ: Europe/Madrid
