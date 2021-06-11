@@ -8,7 +8,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: home-assistant
-      version: 8.3.1
+      version: 9.0.1
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
@@ -28,21 +28,23 @@ spec:
     hostNetwork: true
 
     ingress:
-      enabled: true
-      ingressClassName: traefik
-      hosts:
-        - host: homeassistant.perezmz.com
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: perezmz-com-tls
+      main:
+        enabled: true
+        ingressClassName: traefik
+        hosts:
+          - host: homeassistant.perezmz.com
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: perezmz-com-tls
 
     persistence:
       config:
         enabled: true
-        existingClaim: default-data
-        subPath: home-assistant
+        type: hostPath
+        hostPath: /data/home-assistant
+        mountPath: /config
 
     podSecurityContext:
       fsGroup: 1001
