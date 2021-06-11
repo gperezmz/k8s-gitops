@@ -9,7 +9,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: plex
-      version: 4.4.0
+      version: 5.0.1
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home
@@ -30,36 +30,35 @@ spec:
       PLEX_PREFERENCE_1: LanNetworkBandwith=192.168.0.0/22\,10.42.0.0/16
 
     ingress:
-      enabled: true
-      ingressClassName: traefik
-      annotations:
-        traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
-      hosts:
-        - host: plex.perezmz.com
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: perezmz-com-tls
+      main:
+        enabled: true
+        ingressClassName: traefik
+        annotations:
+          traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
+        hosts:
+          - host: plex.perezmz.com
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: perezmz-com-tls
 
-    additionalVolumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: media-data
-      - name: storage
-        persistentVolumeClaim:
-          claimName: media-storage
-
-    additionalVolumeMounts:
-      - name: data
+    persistence:
+      config:
+        enabled: true
+        type: hostPath
+        hostPath: /data/plex
         mountPath: /config
-        subPath: plex
-      - name: data
-        mountPath: /transcode
-        subPath: plex-transcode
-      - name: storage
+      transcode:
+        enabled: true
+        type: hostPath
+        hostPath: /data/plex-transcode
+        mountPath: /downloads
+      media:
+        enabled: true
+        type: hostPath
+        hostPath: /mnt/storage/media
         mountPath: /data
-        subPath: media
 
     podSecurityContext:
       runAsUser: 1001
