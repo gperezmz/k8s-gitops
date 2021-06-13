@@ -50,7 +50,7 @@ spec:
         enabled: true
         type: hostPath
         hostPath: /data/flood
-        mountPath: /config
+        mountPath: /data
 
     securityContext:
       runAsGroup: 1001
