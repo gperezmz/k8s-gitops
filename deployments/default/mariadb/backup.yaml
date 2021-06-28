@@ -70,7 +70,7 @@ spec:
                 - mountPath: /shared
                   name: shared
             - name: mariadb
-              image: bitnami/mariadb:10.5.10
+              image: bitnami/mariadb:10.5.11
               imagePullPolicy: Always
               env:
                 - name: TZ
