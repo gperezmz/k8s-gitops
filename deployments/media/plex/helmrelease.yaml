@@ -25,9 +25,10 @@ spec:
 
     env:
       TZ: Europe/Madrid
-      ADVERTISE_IP: https://plex.perezmz.com:443/,http://192.168.2.21:32400/
+      ADVERTISE_IP: https://plex.perezmz.com:443/
       ALLOWED_NETWORKS: 192.168.0.0/22,10.42.0.0/16
-      PLEX_PREFERENCE_1: LanNetworkBandwith=192.168.0.0/22\,10.42.0.0/16
+      PLEX_PREFERENCE_1: FriendlyName=plex-k3s
+      PLEX_PREFERENCE_2: LanNetworkBandwith=192.168.0.0/23\,10.42.0.0/16
 
     ingress:
       main:
@@ -53,7 +54,7 @@ spec:
         enabled: true
         type: hostPath
         hostPath: /data/plex-transcode
-        mountPath: /downloads
+        mountPath: /transcode
       media:
         enabled: true
         type: hostPath
