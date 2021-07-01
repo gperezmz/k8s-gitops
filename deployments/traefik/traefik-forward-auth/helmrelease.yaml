@@ -41,7 +41,6 @@ spec:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: traefik
-        traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth@kubernetescrd
       hosts:
         - host: auth.perezmz.com
           paths:
