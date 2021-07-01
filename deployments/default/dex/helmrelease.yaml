@@ -19,10 +19,8 @@ spec:
   interval: 5m0s
   values:
     env:
-      - name: KUBERNETES_POD_NAMESPACE
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.namespace
+      KUBERNETES_POD_NAMESPACE: default
+
     config:
       issuer: https://dex.perezmz.com
 
