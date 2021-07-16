@@ -8,7 +8,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.bitnami.com/bitnami
       chart: mariadb
-      version: 9.3.16
+      version: 9.3.17
       sourceRef:
         kind: HelmRepository
         name: bitnami
