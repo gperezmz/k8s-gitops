@@ -61,8 +61,3 @@ spec:
   serviceExternalIPs:
   - cidr: 192.168.2.0/24
 EOF
-
-calicoctl patch felixconfiguration default --patch='{"spec": {"bpfEnabled": true}}'
-kubectl delete pod -n kube-system -l k8s-app=kube-dns
-
-calicoctl patch felixconfiguration default --patch='{"spec": {"bpfExternalServiceMode": "DSR"}}'
