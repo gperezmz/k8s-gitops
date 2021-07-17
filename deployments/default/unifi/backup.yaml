@@ -1,0 +1,89 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: unifi-backup
+spec:
+  schedule: "15 1 * * *"
+  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 3
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          securityContext:
+            runAsGroup: 1001
+            runAsUser: 1001
+            fsGroup: 1001
+          initContainers:
+            - name: rclone-conf
+              image: alpine/git:v2.30.2
+              env:
+                - name: GITHUB_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      key: github-token
+                      name: github-token
+              command:
+                - /bin/sh
+                - -ec
+                - |
+                  set -o nounset
+                  set -o errexit
+                  if [ -z "${GITHUB_TOKEN}" ]; then
+                    printf "%s - Error - Missing GITHUB_TOKEN environment variable" "$(date -u)"
+                    exit 1
+                  fi
+                  git clone --depth 1 "https://${GITHUB_TOKEN}:x-oauth-basic@github.com/gperezmz/rclone-config.git" /shared/rclone-conf
+                  exit 0
+              volumeMounts:
+                - mountPath: /shared
+                  name: shared
+            - name: rclone-cleanup
+              image: rclone/rclone:1.55
+              env:
+                - name: TZ
+                  value: UTC
+              command:
+                - rclone
+              args:
+                - -v
+                - --config
+                - /shared/rclone-conf/rclone.conf
+                - --min-age
+                - 7d
+                - delete
+                - onedrive-crypt:/unifi
+              volumeMounts:
+                - mountPath: /shared
+                  name: shared
+          containers:
+            - name: rclone
+              image: rclone/rclone:1.55
+              env:
+                - name: TZ
+                  value: UTC
+              command:
+                - rclone
+              args:
+                - -v
+                - --config
+                - /shared/rclone-conf/rclone.conf
+                - copy
+                - --ignore-errors
+                - /data/data/backup/autobackup
+                - onedrive-crypt:/unifi
+              volumeMounts:
+                - mountPath: /shared
+                  name: shared
+                - mountPath: /data
+                  name: default-data
+                  subPath: unifi
+          volumes:
+            - name: default-data
+              persistentVolumeClaim:
+                claimName: default-data
+            - name: shared
+              emptyDir: {}
