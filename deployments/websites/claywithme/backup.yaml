@@ -15,9 +15,9 @@ spec:
         spec:
           restartPolicy: OnFailure
           securityContext:
-            runAsGroup: 1001
-            runAsUser: 1001
-            fsGroup: 1001
+            runAsGroup: 65534
+            runAsUser: 65534
+            fsGroup: 65534
           initContainers:
             - name: rclone-conf
               image: alpine/git:v2.30.2

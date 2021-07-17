@@ -25,8 +25,8 @@ spec:
 
     env:
       TZ: Europe/Madrid
-      USERID: 1001
-      GROUPID: 1001
+      USERID: 65534
+      GROUPID: 65534
 
     envFrom:
       - configMapRef:
@@ -57,4 +57,4 @@ spec:
         subPath: shares
 
     podSecurityContext:
-      fsGroup: 1001
+      fsGroup: 65534

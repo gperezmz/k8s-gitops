@@ -24,8 +24,8 @@ spec:
     env:
       TZ: Europe/Madrid
       RUNAS_UID0: "false"
-      UNIFI_UID: 1001
-      UNIFI_GID: 1001
+      UNIFI_UID: 65534
+      UNIFI_GID: 65534
       UNIFI_STDOUT: "true"
 
     ingress:

@@ -126,9 +126,9 @@ spec:
       enabled: true
       existingClaim: grafana-data
     securityContext:
-      runAsUser: 1001
-      runAsGroup: 1001
-      fsGroup: 1001
+      runAsUser: 65534
+      runAsGroup: 65534
+      fsGroup: 65534
   valuesFrom:
     - kind: Secret
       name: grafana-helm-values

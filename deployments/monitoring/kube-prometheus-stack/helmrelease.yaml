@@ -91,3 +91,8 @@ spec:
                   storage: 5Gi
               storageClassName: local-storage
               volumeName: prometheus-data
+        securityContext:
+          runAsGroup: 65534
+          runAsNonRoot: true
+          runAsUser: 65534
+          fsGroup: 65534

@@ -53,8 +53,8 @@ spec:
         mountPath: /data
 
     securityContext:
-      runAsGroup: 1001
-      runAsUser: 1001
+      runAsGroup: 65534
+      runAsUser: 65534
 
     podSecurityContext:
-      fsGroup: 1001
+      fsGroup: 65534

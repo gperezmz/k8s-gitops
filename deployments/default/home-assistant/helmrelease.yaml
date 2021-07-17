@@ -47,4 +47,4 @@ spec:
         mountPath: /config
 
     podSecurityContext:
-      fsGroup: 1001
+      fsGroup: 65534
