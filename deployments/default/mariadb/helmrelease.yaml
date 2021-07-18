@@ -27,3 +27,6 @@ spec:
       persistence:
         existingClaim: default-data
         subPath: mariadb
+      podSecurityContext:
+        enabled: true
+        fsGroup: 65534
