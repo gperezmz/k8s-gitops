@@ -14,19 +14,6 @@ spec:
   storageClassName: local-storage
 ---
 apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: iso-win10
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 5Gi
-  storageClassName: local-storage
-  volumeName: iso-win10
----
-apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: iso-win10-scratch
