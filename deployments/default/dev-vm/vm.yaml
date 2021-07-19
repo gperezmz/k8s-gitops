@@ -1,0 +1,42 @@
+---
+apiVersion: kubevirt.io/v1alpha3
+kind: VirtualMachine
+metadata:
+  name: dev-vm
+spec:
+  running: false
+  template:
+    metadata:
+      labels:
+        kubevirt.io/domain: dev-vm
+    spec:
+      domain:
+        cpu:
+          cores: 4
+        devices:
+          disks:
+            - bootOrder: 1
+              cdrom:
+                bus: sata
+              name: cdromiso
+            - disk:
+                bus: virtio
+              name: harddrive
+            - cdrom:
+                bus: sata
+              name: virtiocontainerdisk
+        machine:
+          type: q35
+        resources:
+          requests:
+            memory: 4G
+      volumes:
+        - name: cdromiso
+          persistentVolumeClaim:
+            claimName: iso-win10
+        - name: harddrive
+          persistentVolumeClaim:
+            claimName: dev-vm-hd
+        - containerDisk:
+            image: kubevirt/virtio-container-disk
+          name: virtiocontainerdisk
