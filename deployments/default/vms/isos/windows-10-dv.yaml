@@ -4,7 +4,8 @@ metadata:
   name: iso-win10
 spec:
   source:
-    upload: {}
+    http:
+      url: http://192.168.1.48:8000/windows-10.iso
   pvc:
     accessModes:
       - ReadWriteMany
